@@ -115,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
 <div class="fixed-width-container">
 <div class="navbar">
-    <a href="home.php" class="logo-link">
+    <a href="home.html" class="logo-link">
         <img src="images/android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
     </a>
 		<span class="website-title">Meowflex</span>
@@ -130,20 +130,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span></span>
     </div>   
     <nav class="nav-links" id="navLinks">
-        <a href="home.php" class="nav-link">Home</a>
-        <a href="movies.php" class="nav-link">Movies</a>
-        <a href="tvshows.php" class="nav-link">TVShows</a>
-        <a href="kdrama.php" class="nav-link">Korean</a>
-		<a href="fallback.php" class="nav-link">Fallback</a>
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="movies.html" class="nav-link">Movies</a>
+        <a href="tvshows.html" class="nav-link">TVShows</a>
+        <a href="kdrama.html" class="nav-link">Korean</a>
+		<a href="fallback.html" class="nav-link">Fallback</a>
     </nav>
 </div>
 <nav class="mobile-nav" id="mobileNav">
     <ul>
-        <li><a href="home.php">Home</a></li>
-        <li><a href="movies.php">Movies</a></li>
-        <li><a href="tvshows.php">TV Shows</a></li>
-        <li><a href="kdrama.php">Korean</a></li>
-		<li><a href="fallback.php" class="nav-link">Fallback</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="tvshows.html">TV Shows</a></li>
+        <li><a href="kdrama.html">Korean</a></li>
+		<li><a href="fallback.html" class="nav-link">Fallback</a></li>
     </ul>
 </nav>
 <section aria-label="Hero" class="w-full">
@@ -555,12 +555,12 @@ async function displayDetails(item) {
     // Create a URL to navigate to the new player page, passing required parameters
     if (type === 'movie') {
         // For movies, navigate to the new page with the movie ID
-        window.location.href = `player.php?type=movie&id=${id}`;
+        window.location.href = `player.html?type=movie&id=${id}`;
     } else {
         // For TV shows, navigate to the new page with the TV show ID, season, and episode
         const season = details.seasons[0].season_number; // Default to the first season
         const episode = 1; // Default to the first episode
-        window.location.href = `tv-shows-player.php?type=tv&id=${id}&season=${season}&episode=${episode}`;
+        window.location.href = `tv-shows-player.html?type=tv&id=${id}&season=${season}&episode=${episode}`;
     }
 }
 
@@ -839,8 +839,8 @@ shuffled.forEach(item => {
     slide.classList.add('slide');
     const isMovie = item.media_type === 'movie';
     const playLink = isMovie 
-        ? `player.php?type=movie&id=${item.id}` 
-        : `tv-shows-player.php?type=tv&id=${item.id}`; 
+        ? `player.html?type=movie&id=${item.id}` 
+        : `tv-shows-player.html?type=tv&id=${item.id}`; 
 
     slide.innerHTML = `
         <img src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${item.backdrop_path}" alt="${item.title || item.name}">
@@ -932,7 +932,7 @@ function populateSeasonEpisodeDropdowns(tvShow) {
 
         if (selectedSeason && selectedEpisode) {
             // Navigate to the player page with the selected season and episode
-            window.location.href = `tv-shows-player.php?type=tv&id=${tvShow.id}&season=${selectedSeason}&episode=${selectedEpisode}`;
+            window.location.href = `tv-shows-player.html?type=tv&id=${tvShow.id}&season=${selectedSeason}&episode=${selectedEpisode}`;
         } else {
             alert('Please select a season and episode before playing.');
         }
@@ -1115,7 +1115,7 @@ function displayTrendingMovies(movies) {
         carouselItem.classList.add('carousel-item');
 
         carouselItem.innerHTML = `
-            <a href="player.php?type=movie&id=${movie.id}">
+            <a href="player.html?type=movie&id=${movie.id}">
                 <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
             </a>
         `;
@@ -1231,7 +1231,7 @@ startDailyUpdate();
                 const seasonNumber = await fetchFirstSeason(showId);
                 const episodeNumber = 1;
 
-                window.location.href = `tv-shows-player.php?type=tv&id=${showId}&season=${seasonNumber}&episode=${episodeNumber}`;
+                window.location.href = `tv-shows-player.html?type=tv&id=${showId}&season=${seasonNumber}&episode=${episodeNumber}`;
             });
         });
     }
@@ -1500,7 +1500,7 @@ function displayPopularMovies(movies) {
 
 
         carouselItem.innerHTML = `
-            <a href="player.php?type=movie&id=${movie.id}">
+            <a href="player.html?type=movie&id=${movie.id}">
                 <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
             </a>
         `;
@@ -1620,7 +1620,7 @@ startPopularMoviesUpdate();
                 const season = 1; 
                 const episode = 1; 
  
-                window.location.href = `tv-shows-player.php?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
             });
         });
     }
@@ -1765,7 +1765,7 @@ function displayTopRatedMovies(movies) {
         carouselItem.classList.add('carousel-item');
 
         carouselItem.innerHTML = `
-            <a href="player.php?type=movie&id=${movie.id}">
+            <a href="player.html?type=movie&id=${movie.id}">
                 <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
             </a>
         `;
@@ -1900,7 +1900,7 @@ startTopRatedMoviesUpdate();
                 const season = 1; 
                 const episode = 1; 
 
-                window.location.href = `tv-shows-player.php?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
             });
         });
     }
@@ -1979,7 +1979,7 @@ function scrollToTop() {
 <footer class="footer-container">
     <div class="footer-content">
         <div class="social-media" style="text-align: center;">
-            <a href="https://www.facebook.com/profile.php?id=61567326685356" target="_blank" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.html?id=61567326685356" target="_blank" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="white" d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.618h3.128V8.829c0-3.098 1.856-4.791 4.563-4.791 1.299 0 2.415.097 2.738.141v3.17l-1.876.001c-1.473 0-1.758.699-1.758 1.722v2.261h3.54l-.462 3.618h-3.078V24h6.045C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
                 </svg>
