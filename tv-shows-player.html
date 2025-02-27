@@ -101,7 +101,7 @@
 <body style="background-color: #121212;">
 <div class="fixed-width-container">
 <div class="navbar">
-    <a href="home.php" class="logo-link">
+    <a href="home.html" class="logo-link">
         <img src="images/android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
     </a>
 		<span class="website-title">Meowflex</span>
@@ -116,20 +116,20 @@
         <span></span>
     </div>   
     <nav class="nav-links" id="navLinks">
-        <a href="home.php" class="nav-link">Home</a>
-        <a href="movies.php" class="nav-link">Movies</a>
-        <a href="tvshows.php" class="nav-link">TVShows</a>
-        <a href="kdrama.php" class="nav-link">Korean</a>
-		<a href="fallback.php" class="nav-link">Fallback</a>
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="movies.html" class="nav-link">Movies</a>
+        <a href="tvshows.html" class="nav-link">TVShows</a>
+        <a href="kdrama.html" class="nav-link">Korean</a>
+		<a href="fallback.html" class="nav-link">Fallback</a>
     </nav>
 </div>
 <nav class="mobile-nav" id="mobileNav">
     <ul>
-        <li><a href="home.php">Home</a></li>
-        <li><a href="movies.php">Movies</a></li>
-        <li><a href="tvshows.php">TV Shows</a></li>
-        <li><a href="kdrama.php">Korean</a></li>
-		<li><a href="fallback.php" class="nav-link">Fallback</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="tvshows.html">TV Shows</a></li>
+        <li><a href="kdrama.html">Korean</a></li>
+		<li><a href="fallback.html" class="nav-link">Fallback</a></li>
     </ul>
 </nav>
 <div class="modal-content">
@@ -1441,7 +1441,7 @@ function displayRecommendations(recommendations) {
         const recommendationItem = document.createElement('div');
         recommendationItem.className = 'recommendation-item';
         recommendationItem.innerHTML = `
-            <a href="player.php?type=movie&id=${movie.id}" class="recommendation-link" data-id="${movie.id}">
+            <a href="player.html?type=movie&id=${movie.id}" class="recommendation-link" data-id="${movie.id}">
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
             </a>
         `;
@@ -1535,12 +1535,12 @@ async function displayDetails(item) {
     
     if (type === 'movie') {
         
-        window.location.href = `player.php?type=movie&id=${id}`;
+        window.location.href = `player.html?type=movie&id=${id}`;
     } else {
         
         const season = details.seasons[0].season_number; 
         const episode = 1; 
-        window.location.href = `tv-shows-player.php?type=tv&id=${id}&season=${season}&episode=${episode}`;
+        window.location.href = `tv-shows-player.html?type=tv&id=${id}&season=${season}&episode=${episode}`;
     }
 
     
@@ -1602,7 +1602,7 @@ function hideCastButtons() {
             const tvShowItem = document.createElement('div');
             tvShowItem.className = 'tv-show-item';
             tvShowItem.innerHTML = `
-                <a href="tv-shows-player.php?type=tv&id=${tvShow.id}">
+                <a href="tv-shows-player.html?type=tv&id=${tvShow.id}">
                     <img src="https://image.tmdb.org/t/p/w500${tvShow.poster_path}" alt="${tvShow.name}">
                 </a>
             `;
@@ -1736,7 +1736,7 @@ function scrollToTop() {
 <footer class="footer-container">
     <div class="footer-content">
         <div class="social-media" style="text-align: center;">
-            <a href="https://www.facebook.com/profile.php?id=61567326685356" target="_blank" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.html?id=61567326685356" target="_blank" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="white" d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.618h3.128V8.829c0-3.098 1.856-4.791 4.563-4.791 1.299 0 2.415.097 2.738.141v3.17l-1.876.001c-1.473 0-1.758.699-1.758 1.722v2.261h3.54l-.462 3.618h-3.078V24h6.045C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
                 </svg>
