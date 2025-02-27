@@ -1,0 +1,2391 @@
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="referrer" content="origin" />
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Meowflex</title>
+	<meta name="description" content="Watch movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."/>
+	        
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WXRPPZNF');</script>
+
+    </head>
+    <style>
+        
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+			background-color: #121212;
+			overflow-x: hidden;
+        }
+
+
+        .clear-button {
+            position: absolute; 
+            right: 40px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            background: red; 
+            border: none; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 18px; 
+            display: none; 
+            border-radius: 50%; 
+        }
+		
+        .suggestions-dropdown {
+            position: absolute;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none; 
+            z-index: 9999; 
+            top: 40px; 
+        }
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+        .suggestion-item img {
+            width: 40px; 
+            height: auto;
+            margin-right: 10px;
+        }
+		
+		.fixed-width-container {
+    width: 100%;
+    max-width: 1430px;
+    margin: 0 auto;
+    padding: 0 0px;
+}
+
+@media (max-width: 768px) {
+    .fixed-width-container {
+        padding: 0 8px; 
+    }
+
+    h1 {
+        font-size: 1.5rem; 
+    }
+
+    p {
+        font-size: 1rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .fixed-width-container {
+        padding: 0 4px; 
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+ 
+        
+    </style>
+</head>
+<body style="background-color: #121212;">
+    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXRPPZNF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    		
+    
+<div class="fixed-width-container">
+<div class="navbar">
+    <a href="home.html" class="logo-link">
+        <img src="images/android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
+    </a>
+		<span class="website-title">Meowflex</span>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for movies or TV shows..." />
+        <button class="clear-button" id="clearButton">✖</button>
+        <div id="suggestions" class="suggestions-dropdown"></div>
+    </div>    
+    <div class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>   
+    <nav class="nav-links" id="navLinks">
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="movies.html" class="nav-link">Movies</a>
+        <a href="tvshows.html" class="nav-link">TVShows</a>
+        <a href="kdrama.html" class="nav-link">Korean</a>
+		<a href="fallback.html" class="nav-link">Fallback</a>
+    </nav>
+</div>
+<nav class="mobile-nav" id="mobileNav">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="tvshows.html">TV Shows</a></li>
+        <li><a href="kdrama.html">Korean</a></li>
+		<li><a href="fallback.html" class="nav-link">Fallback</a></li>
+    </ul>
+</nav>
+
+<section aria-label="Hero" class="w-full">
+    <div id="hero-slider" class="relative w-full overflow-hidden">
+        <div class="slides"></div>
+    </div>
+</section>
+<section id="trending-tv-shows" class="trending-tv-shows">
+    <h2>Trending</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-trending-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="trending-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-trending-tv-show">&#10095;</button>
+    </div>
+</section>
+<section id="action-tv-shows" class="action-tv-shows">
+    <h2>Action</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-action-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="action-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-action-tv-show">&#10095;</button>
+    </div>
+</section>
+<section id="kdrama-tv-shows" class="kdrama-tv-shows">
+    <h2>Kdrama</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-kdrama-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="kdrama-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-kdrama-tv-show">&#10095;</button>
+    </div>
+</section> 
+<section id="horror-tv-shows" class="horror-tv-shows">
+    <h2>Horror</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-horror-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="horror-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-horror-tv-show">&#10095;</button>
+    </div>
+</section>
+<section id="thriller-tv-shows" class="thriller-tv-shows">
+    <h2>Thriller</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-thriller-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="thriller-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-thriller-tv-show">&#10095;</button>
+    </div>
+</section>
+<section id="family-tv-shows" class="family-tv-shows">
+    <h2>Family</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-family-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="family-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-family-tv-show">&#10095;</button>
+    </div>
+</section> 
+<section id="animated-tv-shows" class="animated-tv-shows">
+    <h2>Animated</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-animated-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="animated-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-animated-tv-show">&#10095;</button>
+    </div>
+</section>
+<section id="comedy-tv-shows" class="comedy-tv-shows">
+    <h2>Comedy</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-comedy-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="comedy-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-comedy-tv-show">&#10095;</button>
+    </div>
+</section>
+
+<section id="romance-tv-shows" class="romance-tv-shows">
+    <h2>Romance</h2>
+    <div class="carousel-container">
+        <button class="carousel-button left" id="prev-romance-tv-show">&#10094;</button>
+        <div class="carousel">
+            <div class="scroll-wrapper" id="romance-tv-shows-carousel"></div>
+        </div>
+        <button class="carousel-button right" id="next-romance-tv-show">&#10095;</button>
+    </div>
+</section>
+
+
+<style>
+.kdrama-tv-shows {
+    margin: 20px 0;
+}
+
+.kdrama-tv-shows .carousel-container {
+    display: flex;
+    align-items: center;
+}
+
+.kdrama-tv-shows .carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
+.kdrama-tv-shows .carousel-inner {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.kdrama-tv-shows .carousel-item {
+    min-width: 200px;
+    margin-right: 10px;
+}
+
+.kdrama-tv-shows img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.carousel-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+	display: block;
+}
+
+.carousel-button.left {
+    margin-right: 10px;
+}
+
+.carousel-button.right {
+    margin-left: 10px;
+}
+
+</style>
+
+<style>
+
+
+h2 {
+    font-size: 24px; 
+    color: #bbb; 
+	display: flex;
+	margin-left: 50px;
+}
+
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 20px; 
+		margin-left: 30px;
+    }
+}
+
+
+
+.trending-movies {
+    background-color: transparent;
+
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1350px;
+    margin: 0 auto;
+    overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    scroll-behavior: smooth;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    width: 170px; 
+    margin-right: 10px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    height: 250px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+.carousel-item img {
+    width: 100%; 
+    height: auto; 
+    max-height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.3s ease; 
+	cursor: pointer;
+}
+
+
+.carousel-item:hover img {
+    transform: scale(1.05); 
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+	display: block;
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}
+
+.carousel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 768px) {
+
+    .carousel-container {
+        max-width: 400px; 
+    }
+
+    .carousel-item {
+        min-width: 150px; 
+        margin-right: 10px; 
+    }
+
+    .carousel-button {
+        padding: 8px; 
+		display: none;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .carousel-item {
+        min-width: 120px; 
+    }
+
+    .carousel-button {
+        padding: 6px; 
+		display: none;
+    }
+	
+}
+
+
+</style>
+	
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+	background-color: #121212;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #1a0000;
+    padding: 15px;
+    color: white;
+    position: relative;
+    width: 100%; 
+    box-sizing: border-box; 
+    z-index: 10; 
+	max-width: 1430px;
+}
+
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px; 
+    }
+}
+
+
+.logo-link img {
+    height: 35px;
+    margin-left: 10px; 
+}
+
+.website-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-left: 7px; 
+}
+
+@media {
+	.website-title {
+		font-size: 19px;
+	}
+}
+
+.search-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: relative;
+    width: 50%; 
+	margin-right: 70px;
+	margin-left: 70px;
+}
+
+@media (max-width: 768px) { 
+    .search-container {
+        display: flex;
+        position: relative;
+        width: 40%; 
+        max-width: 400px; 
+		margin-left: 20px;
+		margin-right: 20px;
+    }
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    border: none;
+}
+.suggestions-dropdown {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+
+.nav-links {
+    display: flex;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+	margin-right: 30px;
+	font-weight: bold;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+
+.mobile-nav {
+    display: none; 
+    position: absolute; 
+    top: 50px; 
+    right: 0px; 
+    width: fit-content; 
+    background-color: #1a0000; 
+    font-weight: bold; 
+    opacity: 0.7; 
+    margin-top: 7px; 
+    transition: opacity 0.3s ease, display 0.3s ease; 
+    border-bottom-left-radius: 10px; 
+	border-bottom-right-radius: 10px; 	
+    z-index: 20; 
+    flex-direction: column; 
+    align-items: flex-end; 
+	text-align: right;
+}
+
+
+.mobile-nav.active {
+    display: flex; 
+    opacity: 1; 
+}
+
+.mobile-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; 
+}
+
+.mobile-nav li {
+    padding: 5px 0; 
+}
+
+.mobile-nav a {
+    text-decoration: none;
+    color: #0a0a0f;
+    font-size: 18px;
+    display: block;
+    width: 95%;
+}
+
+.mobile-nav a:hover {
+    background-color: #444;
+}
+
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+		margin-right: 20px;
+    }
+
+
+    .burger-menu {
+        display: flex;
+        margin-right: 20px;
+    }
+
+    .mobile-nav.active {
+        display: block;
+    }
+	
+    .logo-link img {
+        height: 35px;
+        margin-left: 0px;
+    }
+	
+.mobile-nav:hover {
+    opacity: 100%; 
+}
+
+.mobile-nav ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+	font-size: 15px;
+}
+
+.mobile-nav li {
+    padding: 5px; 
+	margin-right: 15px;
+	font-size: 15px;
+	
+}
+
+.mobile-nav a {
+    text-decoration: none; 
+    color: white; 
+    display: block; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+	font-size: 15px;
+}
+
+.mobile-nav a:hover {
+    background-color: transparent; 
+    color: red; 
+}
+
+}
+
+</style>
+
+<script>
+
+document.getElementById('burgerMenu').addEventListener('click', function(event) {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('active');
+    event.stopPropagation(); 
+});
+
+document.addEventListener('click', function(event) {
+    const nav = document.getElementById('mobileNav');
+    const burgerMenu = document.getElementById('burgerMenu');
+
+    if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+        nav.classList.remove('active'); 
+    }
+});
+
+document.getElementById('searchInput').addEventListener('focus', function() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.remove('active'); 
+});
+
+document.getElementById('videoPlayer').addEventListener('focus', function() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.remove('active'); 
+});
+
+</script>
+
+<script>
+var _$_6e3b=["\x63\x32\x64\x32\x63\x36\x65\x39\x66\x39\x33\x64\x35\x39\x33\x65\x63\x30\x63\x36\x37\x62\x30\x37\x38\x36\x65\x64\x31\x33\x36\x64"];
+const apiKey=_$_6e3b[0]
+const searchInput = document.getElementById('searchInput');
+const suggestionsDropdown = document.getElementById('suggestions');
+const videoPlayer = document.getElementById('videoPlayer');
+const titleElement = document.getElementById('title');
+const releaseDateElement = document.getElementById('releaseDate');
+const descriptionElement = document.getElementById('description'); 
+const backButton = document.getElementById('backButton');
+const clearButton = document.getElementById('clearButton'); 
+const castMembersContainer = document.getElementById('castMembers'); 
+const castLabel = document.getElementById('castLabel'); 
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton'); 
+
+let currentCastIndex = 0; 
+
+searchInput.addEventListener('input', async () => {
+    const query = searchInput.value.trim();
+
+    clearButton.style.display = query.length > 0 ? 'block' : 'none';
+
+    if (query.length < 3) {
+        suggestionsDropdown.style.display = 'none'; 
+        return;
+    }
+
+    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`);
+    const data = await response.json();
+    const results = data.results;
+
+    suggestionsDropdown.innerHTML = ''; 
+
+    if (results.length === 0) {
+        suggestionsDropdown.style.display = 'none'; 
+        return;
+    }
+
+    results.forEach(result => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.innerHTML = `
+            <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" alt="${result.title || result.name}" />
+            <span>${result.title || result.name}</span>
+        `;
+        suggestionItem.addEventListener('click', () => {
+            displayDetails(result);
+        });
+        suggestionsDropdown.appendChild(suggestionItem);
+    });
+
+    suggestionsDropdown.style.display = 'block'; // Show dropdown
+});
+
+clearButton.addEventListener('click', () => {
+    searchInput.value = ''; // Clear input
+    suggestionsDropdown.style.display = 'none'; // Hide suggestions
+    clearButton.style.display = 'none'; // Hide clear button
+});
+
+backButton.addEventListener('click', () => {
+    videoPlayer.src = ''; // Clear the video source
+    backButton.style.display = 'none'; // Hide back button
+    suggestionsDropdown.style.display = 'none'; // Hide suggestions
+    hideCastButtons(); // Hide cast buttons
+
+    // Hide the entire content section
+    document.querySelector('.content').style.display = 'none'; // Hides the content
+});
+
+async function displayDetails(item) {
+    const type = item.media_type === 'movie' ? 'movie' : 'tv'; // Determine type
+    const id = item.id; // Get the ID of the selected item
+
+    const response = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&append_to_response=credits`);
+    const details = await response.json();
+
+    // Clear the search bar and hide the clear button
+    searchInput.value = ''; // Clear the search input
+    clearButton.style.display = 'none'; // Hide the clear button
+
+    // Create a URL to navigate to the new player page, passing required parameters
+    if (type === 'movie') {
+        // For movies, navigate to the new page with the movie ID
+        window.location.href = `player.html?type=movie&id=${id}`;
+    } else {
+        // For TV shows, navigate to the new page with the TV show ID, season, and episode
+        const season = details.seasons[0].season_number; // Default to the first season
+        const episode = 1; // Default to the first episode
+        window.location.href = `tv-shows-player.html?type=tv&id=${id}&season=${season}&episode=${episode}`;
+    }
+}
+
+function displayCast(cast) {
+    castMembersContainer.innerHTML = ''; // Clear previous cast members
+    currentCastIndex = 0; // Reset index
+    castLabel.style.display = cast.length > 0 ? 'block' : 'none'; // Show label only if there are cast members
+
+    const castCount = Math.min(cast.length, 10); // Limit to first 10 cast members
+    let displayedCount = 0; // Count of displayed cast members
+
+    for (let i = 0; i < castCount; i++) {
+        const member = cast[i];
+
+        if (member.profile_path) {
+            const castMemberElement = document.createElement('div');
+            castMemberElement.className = 'cast-member';
+            castMemberElement.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w500${member.profile_path}" alt="${member.name}" />
+                <span class="cast-member-name">${member.name}</span> 
+            `;
+            castMembersContainer.appendChild(castMemberElement);
+            displayedCount++; // Increment displayed count
+        }
+    }
+
+    castLabel.style.display = displayedCount > 0 ? 'block' : 'none';
+
+    updateCastDisplay(); // Update cast display
+}
+
+function updateCastDisplay() {
+    const castCount = castMembersContainer.children.length; // Get the total number of cast members
+    const maxVisible = 5; // Maximum visible cast members at a time
+    currentCastIndex = Math.max(0, Math.min(currentCastIndex, castCount - 1)); // Clamp index
+
+    const translateX = -currentCastIndex * (100 / maxVisible);
+    castMembersContainer.style.transform = `translateX(${translateX}%)`; // Move cast members
+}
+
+prevButton.addEventListener('click', () => {
+    currentCastIndex--; // Move to previous
+    updateCastDisplay(); // Update display
+});
+
+nextButton.addEventListener('click', () => {
+    currentCastIndex++; // Move to next
+    updateCastDisplay(); // Update display
+});
+
+// Hide the cast buttons initially
+function hideCastButtons() {
+    prevButton.style.display = 'none';
+    nextButton.style.display = 'none';
+}
+
+// Show the cast buttons when the video is playing
+videoPlayer.onload = () => {
+    prevButton.style.display = 'block';
+    nextButton.style.display = 'block';
+};
+
+// Initialize the clear button visibility
+clearButton.style.display = 'none'; // Hide initially
+hideCastButtons(); // Call to hide buttons initially
+
+</script>
+
+
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+}
+
+#hero-slider {
+    position: relative; 
+    max-width: 1430px;
+    overflow: hidden;
+    margin-right: 0;
+    width: 100%;
+    height: 80vh; 
+	margin-bottom: 20px;
+}
+
+#hero-slider::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 70%; 
+    background: linear-gradient(to right, rgba(0, 5, 5, 5.9), rgba(0, 0, 0, 0)); 
+    z-index: 1; 
+    pointer-events: none; 
+}
+
+.slide {
+    position: relative; 
+    min-width: 100%; 
+}
+
+.slide img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: 0; 
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.caption {
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+    color: #bbb;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    align-items: center;
+    margin-right: 50px;
+    z-index: 2;
+	border-radius: 10px;
+}
+
+.caption h2 {
+    margin: 0;
+    z-index: 2;
+}
+
+.caption p {
+    margin: 5px 0 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5em;
+    max-height: 4.5em; 
+    z-index: 2;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+
+@media (max-width: 480px) {
+    #hero-slider {
+    position: relative; 
+    overflow: hidden;
+    width: 100%;
+    height: 80vw; 
+}
+
+.slide {
+    width: 150%;
+    height: 100%; 
+    position: relative; 
+}
+
+.slide img {
+    width: 100%; 
+    height: 80vw; 
+    object-fit: cover; 
+}
+
+
+    .caption {
+        font-size: 12px;
+        bottom: 15px;
+        left: 5px;
+        padding: 5px;
+        margin-left: 20px;
+		color: #bbb;
+    }
+
+    .caption h2 {
+        font-size: 18px;
+    }
+
+    .caption p {
+        font-size: 12px;
+    }
+
+    .prev,
+    .next {
+        padding: 4px;
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .play-btn {
+        font-size: 10px;
+        height: 15px;
+        width: 52px;
+		
+    }
+}
+
+@media (max-width: 480px) {
+    .play-btn {
+        font-size: 10px;
+		padding: 9px;        
+    }
+}
+
+
+.play-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ff0000;
+    color: white;
+    padding: 5px 5px 5px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.play-btn::before {
+    content: '\25B6'; 
+    margin-right: 5px; 
+    font-size: 18px;
+}
+
+
+.play-btn:hover {
+    background-color: #e60000;
+}
+
+</style>
+
+
+
+<script>
+var _$_706d=["\x63\x32\x64\x32\x63\x36\x65\x39\x66\x39\x33\x64\x35\x39\x33\x65\x63\x30\x63\x36\x37\x62\x30\x37\x38\x36\x65\x64\x31\x33\x36\x64"];
+const API_KEY=_$_706d[0]
+let currentSlide = 0;
+
+async function fetchTrending() {
+    try {
+        const tvResponse = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}`);
+        const tvShows = await tvResponse.json();
+
+        const shuffled = tvShows.results.sort(() => 0.5 - Math.random()).slice(0, 10);
+        
+        const slidesContainer = document.querySelector('.slides');
+        slidesContainer.innerHTML = '';
+
+        shuffled.forEach(item => {
+            const slide = document.createElement('div');
+            slide.classList.add('slide');
+            const playLink = `tv-shows-player.html?type=tv&id=${item.id}`; 
+
+            slide.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${item.backdrop_path}" alt="${item.name}">
+                <div class="caption">
+                    <h2>${item.name}</h2>
+                    <p>${item.overview}</p>
+                    <a href="${playLink}" class="play-btn">Play</a> 
+                </div>
+            `;
+            slidesContainer.appendChild(slide);
+        });
+
+        showSlide(currentSlide); // Ensure to show the first slide
+    } catch (error) {
+        console.error('Error fetching data from TMDB:', error);
+    }
+}
+
+// Function to show a specific slide
+function showSlide(index) {
+    const slides = document.querySelectorAll('.slide');
+    if (index >= slides.length) currentSlide = 0;
+    if (index < 0) currentSlide = slides.length - 1;
+
+    slides.forEach((slide, i) => {
+        slide.style.display = (i === currentSlide) ? 'block' : 'none';
+    });
+}
+
+// Function to change the slide direction
+function changeSlide(direction) {
+    currentSlide += direction;
+    showSlide(currentSlide);
+}
+
+// Initialize the slider and fetch trending TV shows
+fetchTrending();
+
+// Auto slide every 5 seconds
+setInterval(() => {
+    currentSlide++;
+    showSlide(currentSlide);
+}, 3000);
+
+// Optional: Auto-update trending data every 24 hours
+setInterval(() => {
+    fetchTrending();
+}, 86400000);
+
+</script>
+<style>
+
+.trending-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.trending-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.trending-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.trending-tv-shows .carousel-item {
+    min-width: 200px;
+    height: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+
+
+.trending-tv-shows .carousel-item img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 10px; 
+}
+
+.trending-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.trending-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.trending-tv-shows .carousel-button.right {
+    right: 10px;
+}
+</style>
+
+
+<script>
+(async function() {
+    const carouselInner = document.getElementById('trending-tv-shows-carousel');
+    let currentIndex = 0;
+
+    async function fetchTrendingTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&page=${page}`);
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        displayTrendingTVShows(allTVShows);
+    }
+
+    function displayTrendingTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-trending-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-trending-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchTrendingTVShows();
+})();
+</script>
+
+
+
+<style>
+
+.action-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.action-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.action-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+.action-tv-shows .carousel-item {
+    min-width: 200px;
+    height: 280px; 
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow: hidden; 
+    border-radius: 10px; 
+}
+
+.action-tv-shows .carousel-item img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.action-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.action-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.action-tv-shows .carousel-button.right {
+    right: 10px;
+}
+</style>
+
+
+<script>
+(async function() {
+    const carouselInner = document.getElementById('action-tv-shows-carousel');
+    let currentIndex = 0;
+
+    async function fetchActionTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=10759&page=${page}`);
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        shuffleArray(allTVShows);
+
+        displayActionTVShows(allTVShows);
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; 
+        }
+    }
+
+    function displayActionTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+             
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-action-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-action-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchActionTVShows();
+})();
+</script>
+
+
+
+<style>
+
+.kdrama-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.kdrama-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.kdrama-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.kdrama-tv-shows .carousel-item {
+    min-width: 200px;
+	height: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+.kdrama-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.kdrama-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.kdrama-tv-shows .carousel-button.right {
+    right: 10px;
+}
+</style>
+
+<script>
+(async function() {
+    const carouselInner = document.getElementById('kdrama-tv-shows-carousel');
+    const kdramaIds = [
+        '93405', '70593', '94796', '96462', '67915', '96648', '110356', '65143',
+        '117376', '60957', '16420', '96162', '68814', '48462', '93846', '79434',
+        '66330', '67018', '99048', '61670', '70626', '68349', '66433', '92983',
+        '128883', '90447', '61611', '37636', '75820', '70649', '64840', '64010',
+        '39346', '99494', '67391', '70813', '78385', '90814', '3215', '83634',
+        '76662', '112888', '89641', '62266', '113268', '31417', '63767', '57646',
+        '74682', '85220', '64320', '96571', '96102', '75123', '71349', '63119'
+    ];
+
+    async function fetchKdramaTVShows() {
+        const allTVShows = [];
+        for (const id of kdramaIds) {
+            const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`);
+            const data = await response.json();
+            allTVShows.push(data);
+        }
+        displayKdramaTVShows(allTVShows);
+    }
+
+    function displayKdramaTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" 
+                     alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+
+    document.getElementById('next-kdrama-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-kdrama-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchKdramaTVShows();
+})();
+</script>
+
+<style>
+
+.horror-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.horror-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.horror-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.horror-tv-shows .carousel-item {
+    min-width: 200px;
+	height: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+.horror-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.horror-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.horror-tv-shows .carousel-button.right {
+    right: 10px;
+}
+</style>
+
+<script>
+(async function() {
+    const carouselInner = document.getElementById('horror-tv-shows-carousel');
+ var _$_1e00=["\x63\x32\x64\x32\x63\x36\x65\x39\x66\x39\x33\x64\x35\x39\x33\x65\x63\x30\x63\x36\x37\x62\x30\x37\x38\x36\x65\x64\x31\x33\x36\x64"];
+const API_KEY=_$_1e00[0]
+
+    async function fetchHorrorTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = 1; 
+        const allTVShows = [];
+
+        const keywordId = 315058;
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_keywords=${keywordId}&page=${page}`);
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        const shuffledTVShows = shuffleArray(allTVShows);
+
+        displayHorrorTVShows(shuffledTVShows);
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; 
+        }
+        return array;
+    }
+
+    function displayHorrorTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+              
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-horror-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-horror-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchHorrorTVShows();
+})();
+</script>
+
+<style>
+
+.thriller-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.thriller-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.thriller-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.thriller-tv-shows .carousel-item {
+    min-width: 200px;
+	height: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+.thriller-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.thriller-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.thriller-tv-shows .carousel-button.right {
+    right: 10px;
+}
+</style>
+
+<script>
+(async function() {
+    const carouselInner = document.getElementById('thriller-tv-shows-carousel');
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    async function fetchThrillerTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=80&page=${page}`); // Genre ID for Thriller is 80
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        const shuffledTVShows = shuffleArray(allTVShows);
+        displayThrillerTVShows(shuffledTVShows);
+    }
+
+    function displayThrillerTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-thriller-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-thriller-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchThrillerTVShows();
+})();
+</script>
+
+
+<style>
+
+.family-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.family-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.family-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.family-tv-shows .carousel-item {
+    min-width: 200px;
+	height: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+.family-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.family-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.family-tv-shows .carousel-button.right {
+    right: 10px;
+}
+</style>
+
+<script>
+(async function() {
+    const carouselInner = document.getElementById('family-tv-shows-carousel');
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    async function fetchFamilyTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=10751&page=${page}`); // Genre ID for Family is 10751
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        const shuffledTVShows = shuffleArray(allTVShows);
+        displayFamilyTVShows(shuffledTVShows);
+    }
+
+    function displayFamilyTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-family-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-family-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchFamilyTVShows();
+})();
+</script>
+
+<style>
+
+.animated-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.animated-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.animated-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.animated-tv-shows .carousel-item {
+    min-width: 200px;
+	height: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+
+.animated-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.animated-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.animated-tv-shows .carousel-button.right {
+    right: 10px;
+}
+
+</style>
+<script>
+(async function() {
+    const carouselInner = document.getElementById('animated-tv-shows-carousel');
+
+    async function fetchAnimatedTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16&page=${page}`); // Genre ID for Animation is 16
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        displayAnimatedTVShows(allTVShows);
+    }
+
+    function displayAnimatedTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1; 
+                const episode = 1; 
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-animated-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-animated-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchAnimatedTVShows();
+})();
+</script>
+<style>
+
+.comedy-tv-shows .carousel,
+.romance-tv-shows .carousel {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.comedy-tv-shows .scroll-wrapper,
+.romance-tv-shows .scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+}
+
+.comedy-tv-shows .scroll-wrapper::-webkit-scrollbar,
+.romance-tv-shows .scroll-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.comedy-tv-shows .carousel-item,
+.romance-tv-shows .carousel-item {
+    min-width: 200px;
+    flex-shrink: 0;
+    cursor: pointer;
+    height: 280px; 
+    overflow: hidden; 
+}
+
+.comedy-tv-shows .carousel-item img,
+.romance-tv-shows .carousel-item img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+
+
+.comedy-tv-shows .carousel-button,
+.romance-tv-shows .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.comedy-tv-shows .carousel-button.left,
+.romance-tv-shows .carousel-button.left {
+    left: 10px;
+}
+
+.comedy-tv-shows .carousel-button.right,
+.romance-tv-shows .carousel-button.right {
+    right: 10px;
+}
+
+</style>
+<script>
+(async function() {
+    const carouselInner = document.getElementById('comedy-tv-shows-carousel');
+
+    async function fetchComedyTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=35&page=${page}`); // Genre ID for Comedy is 35
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        displayComedyTVShows(allTVShows);
+    }
+
+    function displayComedyTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1;
+                const episode = 1;
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-comedy-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-comedy-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchComedyTVShows();
+})();
+
+(async function() {
+    const carouselInner = document.getElementById('romance-tv-shows-carousel');
+
+    async function fetchRomanceTVShows() {
+        const tvShowsPerPage = 20;
+        const totalPages = Math.ceil(50 / tvShowsPerPage); 
+        const allTVShows = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=10749&page=${page}`); // Genre ID for Romance is 10749
+            const data = await response.json();
+            allTVShows.push(...data.results);
+        }
+
+        displayRomanceTVShows(allTVShows);
+    }
+
+    function displayRomanceTVShows(tvShows) {
+        carouselInner.innerHTML = ''; 
+
+        tvShows.forEach(tvShow => {
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+
+            carouselItem.innerHTML = `
+                <img src="https://image.tmdb.org/t/p/w200${tvShow.poster_path}" alt="${tvShow.name}" class="clickable-tv-show" data-id="${tvShow.id}" />
+            `;
+            carouselInner.appendChild(carouselItem);
+        });
+
+        document.querySelectorAll('.clickable-tv-show').forEach(item => {
+            item.addEventListener('click', function() {
+                const tvShowId = this.getAttribute('data-id');
+                const season = 1;
+                const episode = 1;
+                window.location.href = `tv-shows-player.html?type=tv&id=${tvShowId}&season=${season}&episode=${episode}`;
+            });
+        });
+    }
+
+    document.getElementById('next-romance-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    document.getElementById('prev-romance-tv-show').addEventListener('click', () => {
+        carouselInner.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    fetchRomanceTVShows();
+})();
+
+</script>
+
+<button id="backToTop" class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+
+<style>
+.back-to-top {
+    display: none; 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    background-color: navy; 
+    color: white; 
+    border: 2px solid white; 
+    border-radius: 15px; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s, border-color 0.3s; 
+    z-index: 1000; 
+}
+
+.back-to-top:hover {
+    background-color: red; 
+    border-color: red; 
+}
+
+
+@media (max-width: 600px) {
+    .back-to-top {
+        bottom: 20px; 
+        right: 20px; 
+        padding: 8px 12px; 
+        font-size: 14px; 
+    }
+}
+</style>
+
+<script>
+
+window.onscroll = function() {
+    const button = document.getElementById('backToTop');
+    const footer = document.querySelector('footer'); 
+
+    const footerRect = footer.getBoundingClientRect();
+
+    if ((document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) && footerRect.top > window.innerHeight) {
+        button.style.display = "block"; 
+    } else {
+        button.style.display = "none"; 
+    }
+};
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' 
+    });
+}
+</script>
+
+
+<footer class="footer-container">
+    <div class="footer-content">
+        <div class="social-media" style="text-align: center;">
+            <a href="https://www.facebook.com/profile.html?id=61567326685356" target="_blank" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="white" d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.618h3.128V8.829c0-3.098 1.856-4.791 4.563-4.791 1.299 0 2.415.097 2.738.141v3.17l-1.876.001c-1.473 0-1.758.699-1.758 1.722v2.261h3.54l-.462 3.618h-3.078V24h6.045C23.407 24 24 23.407 24 22.676V1.325C24 .593 23.407 0 22.675 0z"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/meowmeowflex/" target="_blank" aria-label="Instagram">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/instagram-white-icon.png" alt="Instagram Logo" width="24" height="24" />
+            </a>
+            <a href="https://www.tiktok.com/@meowflex2" target="_blank" aria-label="TikTok">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/tiktok-white-icon.png" alt="TikTok Logo" width="24" height="24" />
+            </a>
+        </div>
+        <p class="rights-reserved">© 2024 Meowflex. All rights reserved.</p>
+        <p><a href="#" id="mit-license-link" class="mit-license-link">MIT License</a> <a style="color: #bbb;">|</a> <a href="#" class="disclaimer-title" id="disclaimer-link">Disclaimer</a></p>       
+    </div>
+</footer>
+
+
+<div id="mit-license-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="close-license-modal">&times;</span>
+        <h2>MIT License</h2>
+        <pre class="license-text">
+The MIT License (MIT)
+
+Copyright (c) 2024 Meowflex
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+        </pre>
+    </div>
+</div>
+
+
+<div id="disclaimer-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="close-disclaimer-modal">&times;</span>
+        <p>Meowflex does not host any files, it merely pulls streams from 3rd party services. Legal issues should be taken up with the file hosts and providers. Meowflex is not responsible for any media files shown by the video providers.</p>
+    </div>
+</div>
+
+<style>
+
+
+
+.footer-container {
+    background-color: #0a0a0f;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 97%;
+    font-family: Arial, sans-serif;
+    overflow: hidden; 
+}
+
+
+.footer-content {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) { 
+    .footer-container {
+        margin-bottom: 0; 
+    }
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.rights-reserved {
+    font-size: 14px; 
+    margin-bottom: 15px;
+    color: #bbb;
+}
+
+.mit-license-link {
+    color: #bbb;
+    text-decoration: none;
+	font-size: 14px;
+}
+
+.mit-license-link:hover {
+    text-decoration: underline;
+	color: #007BFF;
+}
+
+
+@media (max-width: 600px) {
+    .rights-reserved {
+        font-size: 12px; 
+        margin-bottom: 10px; 
+    }
+
+    .mit-license-link {
+        font-size: 12px; 
+    }
+	.disclaimer-title {
+		font-size: 12px;
+	}
+}
+
+
+.disclaimer-title {
+    font-size: 14px; 
+    color: #bbb; 
+    text-decoration: none; 
+    transition: color 0.3s, text-decoration 0.3s; 
+}
+
+.disclaimer-title:hover {
+    color: #007BFF; 
+    text-decoration: underline; 
+}
+
+.disclaimer-text {
+    font-size: 14px; 
+}
+
+
+
+@media (max-width: 600px) {
+    .disclaimer-title {
+        font-size: 12px; 
+    }
+
+    .disclaimer-text {
+        font-size: 11px; 
+    }
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: auto; 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    color: #333;
+}
+
+.close-modal {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.license-text {
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ddd;
+    max-height: 60vh; 
+    overflow-y: auto;
+}
+
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+        margin: 20% auto; 
+    }
+}
+
+.social-media {
+    margin-bottom: 15px; 
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 10px; 
+}
+
+.social-icon img {
+    width: 24px; 
+    height: 24px; 
+    vertical-align: middle; 
+}
+
+.social-media {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+}
+
+.social-media a {
+    display: inline-block; 
+    width: 40px; 
+    height: 40px; 
+}
+
+</style>
+<script>
+var modal = document.getElementById('mit-license-modal');
+var link = document.getElementById('mit-license-link');
+var closeBtn = document.getElementById('close-license-modal');
+
+link.addEventListener('click', function(event) {
+    event.preventDefault();
+    modal.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+var disclaimerModal = document.getElementById('disclaimer-modal');
+var disclaimerLink = document.getElementById('disclaimer-link');
+var closeDisclaimerBtn = document.getElementById('close-disclaimer-modal');
+
+disclaimerLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    disclaimerModal.style.display = 'block';
+});
+
+closeDisclaimerBtn.addEventListener('click', function() {
+    disclaimerModal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target == disclaimerModal) {
+        disclaimerModal.style.display = 'none';
+    }
+});
+
+</script>
+</div>
+</body>
+</html>
