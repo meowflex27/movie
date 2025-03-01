@@ -1167,7 +1167,7 @@ function displayTrendingMovies(movies) {
         carouselItem.classList.add('carousel-item');
 
         carouselItem.innerHTML = `
-            <a href="play.html?type=movie&id=${movie.id}">
+            <a href="player.html?type=movie&id=${movie.id}">
                 <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
             </a>
         `;
