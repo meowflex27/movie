@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="referrer" content="origin" />
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <title>Meowflex</title>
-	<meta name="description" content="Watch movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."/>
+	<meta name="description" content="Stream FREE movies, TV shows, Korean movies, and Kdramas online instantly! Watch on any device — smart TV, gaming console, PC, Mac, mobile, or tablet. Enjoy thousands of titles, from trending Korean movies and top-rated Kdramas to classic TV shows and new movie releases. With free streaming across devices, access a seamless viewing experience anytime, anywhere. Start streaming free Korean movies and Kdramas today for the best in entertainment!"/>
 	
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQTNZZ01R0"></script>
@@ -17,7 +17,23 @@
 
   gtag('config', 'G-RQTNZZ01R0');
 </script>
-
+	
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WXRPPZNF');</script>
+<!-- End Google Tag Manager -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Meowflex",
+  "url": "https://www.meowflex.com",
+  "logo": "images/favicon.ico"
+}
+</script>
     </head>	
     <style>
         
@@ -31,26 +47,36 @@
         }
 
         .clear-button {
-            position: absolute; 
-            right: 40px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            background: red; 
-            border: none; 
-            color: white; 
-            cursor: pointer; 
-            font-size: 18px; 
-            display: none; 
-            border-radius: 50%; 
-        }
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+    display: none;
+    border-radius: 50%;
+}
+
+/* Mobile view adjustments */
+@media screen and (max-width: 768px) {
+    .clear-button {
+        display: none;
+        right: 5px; /* Adjust the right positioning for mobile */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px; /* Optionally reduce font size */
+    }
+}
         .suggestions-dropdown {
             position: absolute;
             background-color: #fff;
             color: #333;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 300px;
-            max-height: 300px;
+            max-height: 500px;
             overflow-y: auto;
             display: none; 
             z-index: 9999; 
@@ -59,16 +85,16 @@
         .suggestion-item {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 5px;
             cursor: pointer;
         }
         .suggestion-item:hover {
             background-color: #f0f0f0;
         }
         .suggestion-item img {
-            width: 40px; 
+            width: 60px; 
             height: auto;
-            margin-right: 10px;
+            margin-right: 30px;
         }
 		
 .fixed-width-container {
@@ -117,7 +143,7 @@
 <div class="fixed-width-container">
 <div class="navbar">
     <a href="home.html" class="logo-link">
-        <img src="android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
+        <img src="images/android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
     </a>
 		<span class="website-title">Meowflex</span>
     <div class="search-container">
@@ -135,6 +161,7 @@
         <a href="movies.html" class="nav-link">Movies</a>
         <a href="tvshows.html" class="nav-link">TVShows</a>
         <a href="kdrama.html" class="nav-link">Korean</a>
+        <a href="donation.html" class="nav-link">Donation</a>
 		<a href="fallback.html" class="nav-link">Fallback</a>
     </nav>
 </div>
@@ -144,7 +171,8 @@
         <li><a href="movies.html">Movies</a></li>
         <li><a href="tvshows.html">TV Shows</a></li>
         <li><a href="kdrama.html">Korean</a></li>
-		<li><a href="fallback.html" class="nav-link">Fallback</a></li>
+        <li><a href="donation.html">Donation</a></li>
+		<li><a href="fallback.html">Fallback</a></li>
     </ul>
 </nav>
 <section aria-label="Hero" class="w-full">
@@ -173,7 +201,7 @@
     </div>
 </section>
 <section id="pinoy-movies" class="pinoy-movies">
-    <h2>N*tflix Trending Movies</h2>
+    <h2>Netflix Ph Trending Movies</h2>
     <div class="carousel-container">
         <button class="carousel-button left" id="prev-pinoy">&#10094;</button>
         <div class="carousel" id="pinoy-movies-carousel">
@@ -300,6 +328,14 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+    .suggestions-dropdown {
+        width: 190%;
+    }
+}
+
 
 
 .nav-links {
@@ -441,6 +477,22 @@ body {
 
 }
 
+.suggestion-item .media-type {
+    font-size: 0.8rem;  /* Makes the text small */
+    color: red;         /* Makes the text red */
+    margin-left: 5px;   /* Adds a little space between the title and the indicator */
+    font-weight: bold;  /* Optional: Makes the text bold */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .suggestion-item .media-type {
+        font-size: 0.9rem;   /* Slightly larger font size for readability on mobile */
+        color: #ff5733;      /* A different color for mobile (optional) */
+        margin-left: 10px;   /* Adds more space between title and indicator on mobile */
+    }
+}
+
 </style>
 
 <script>
@@ -513,18 +565,25 @@ searchInput.addEventListener('input', async () => {
     results.forEach(result => {
         const suggestionItem = document.createElement('div');
         suggestionItem.className = 'suggestion-item';
+        
+        let title = result.title || result.name;
+        let posterPath = result.poster_path ? `https://image.tmdb.org/t/p/w500${result.poster_path}` : 'default-image-url'; 
+        
         suggestionItem.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" alt="${result.title || result.name}" />
-            <span>${result.title || result.name}</span>
+            <img src="${posterPath}" alt="${title}" />
+            <span>${title}</span>
+            <span class="media-type">${result.media_type === 'movie' ? '(Movie)' : '(TV Show)'}</span>
         `;
+
         suggestionItem.addEventListener('click', () => {
-            displayDetails(result);
+            displayDetails(result); 
         });
-        suggestionsDropdown.appendChild(suggestionItem);
+        suggestionsDropdown.appendChild(suggestionItem); 
     });
 
-    suggestionsDropdown.style.display = 'block'; // Show dropdown
+    suggestionsDropdown.style.display = 'block'; 
 });
+
 
 clearButton.addEventListener('click', () => {
     searchInput.value = ''; // Clear input
@@ -1116,7 +1175,7 @@ function displayTrendingMovies(movies) {
         carouselItem.classList.add('carousel-item');
 
         carouselItem.innerHTML = `
-            <a href="player.html?type=movie&id=${movie.id}">
+            <a href="play.html?type=movie&id=${movie.id}">
                 <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
             </a>
         `;
@@ -1312,7 +1371,7 @@ startDailyUpdate();
 </style>
 <script>
 const pinoyMovieIds = [
-    912649, 502356, 1292359, 1260594, 1134682, 23483, 1164488, 93456, 1393069, 1426674
+    615656, 631842, 1167815, 1186532, 1079091, 1005331, 493529, 412117, 1263112, 826510
 ];
 
 async function fetchPinoyMovies() {
@@ -1993,7 +2052,8 @@ function scrollToTop() {
             </a>
         </div>
         <p class="rights-reserved">© 2024 Meowflex. All rights reserved.</p>
-        <p><a href="#" id="mit-license-link" class="mit-license-link">MIT License</a> <a style="color: #bbb;">|</a> <a href="#" class="disclaimer-title" id="disclaimer-link">Disclaimer</a></p>       
+        <p><a href="#" id="mit-license-link" class="mit-license-link">MIT License</a> <a style="color: #bbb;">|</a> <a href="#" class="disclaimer-title" id="disclaimer-link">Disclaimer</a> <a style="color: #bbb;">|</a> <a href="donation.html" class="donation-title" id="donation-link">Donation</a>
+ </p>       
     </div>
 </footer>
 
@@ -2035,6 +2095,32 @@ SOFTWARE.
 </div>
 
 <style>
+
+/* General styling for the link */
+.donation-title {
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    color: #bbb;
+    text-align: center;
+}
+
+	.donation-title:hover {
+    text-decoration: underline;
+	color: #007BFF;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .donation-title {
+        font-size: 12px;
+        display: inline-block; /* Ensures it stays in a row with other elements */
+        margin: 0; /* Removes unnecessary margins */
+        width: auto; /* Allows it to size naturally */
+        text-align: center; /* Aligns the text within the link */
+        vertical-align: middle; /* Aligns it vertically with other inline elements */
+    }
+}
 .footer-container {
     background-color: #0a0a0f;
     padding: 20px;
