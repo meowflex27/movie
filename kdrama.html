@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="referrer" content="origin" />
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <title>Meowflex</title>
-	<meta name="description" content="Watch movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."/>
-	        
+	<meta name="description" content="Stream FREE movies, TV shows, Korean movies, and Kdramas online instantly! Watch on any device — smart TV, gaming console, PC, Mac, mobile, or tablet. Enjoy thousands of titles, from trending Korean movies and top-rated Kdramas to classic TV shows and new movie releases. With free streaming across devices, access a seamless viewing experience anytime, anywhere. Start streaming free Korean movies and Kdramas today for the best in entertainment!"/>
+	
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQTNZZ01R0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQTNZZ01R0');
+</script>	
+	
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WXRPPZNF');</script>
-
-    </head>
-     <style>
+<!-- End Google Tag Manager -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Meowflex",
+  "url": "https://www.meowflex.com",
+  "logo": "images/favicon.ico"
+}
+</script>
+    </head>	
+    <style>
         
         html, body {
             font-family: Arial, sans-serif;
@@ -26,28 +46,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			overflow-x: hidden;
         }
 
-
         .clear-button {
-            position: absolute; 
-            right: 40px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            background: red; 
-            border: none; 
-            color: white; 
-            cursor: pointer; 
-            font-size: 18px; 
-            display: none; 
-            border-radius: 50%; 
-        }
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+    display: none;
+    border-radius: 50%;
+}
+
+/* Mobile view adjustments */
+@media screen and (max-width: 768px) {
+    .clear-button {
+        display: none;
+        right: 5px; /* Adjust the right positioning for mobile */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px; /* Optionally reduce font size */
+    }
+}
         .suggestions-dropdown {
             position: absolute;
             background-color: #fff;
             color: #333;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 300px;
-            max-height: 300px;
+            max-height: 500px;
             overflow-y: auto;
             display: none; 
             z-index: 9999; 
@@ -56,18 +85,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .suggestion-item {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 5px;
             cursor: pointer;
         }
         .suggestion-item:hover {
             background-color: #f0f0f0;
         }
         .suggestion-item img {
-            width: 40px; 
+            width: 60px; 
             height: auto;
-            margin-right: 10px;
+            margin-right: 30px;
         }
-		.fixed-width-container {
+		
+.fixed-width-container {
     width: 100%;
     max-width: 1430px;
     margin: 0 auto;
@@ -102,18 +132,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 }
   
-        
-    </style>
+    </style>		
 </head>
 <body style="background-color: #121212;">
-    
+
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXRPPZNF"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     		
+    
 <div class="fixed-width-container">
 <div class="navbar">
     <a href="home.html" class="logo-link">
-        <img src="android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
+        <img src="images/android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
     </a>
 		<span class="website-title">Meowflex</span>
     <div class="search-container">
@@ -131,6 +161,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="movies.html" class="nav-link">Movies</a>
         <a href="tvshows.html" class="nav-link">TVShows</a>
         <a href="kdrama.html" class="nav-link">Korean</a>
+        <a href="donation.html" class="nav-link">Donation</a>
 		<a href="fallback.html" class="nav-link">Fallback</a>
     </nav>
 </div>
@@ -140,7 +171,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <li><a href="movies.html">Movies</a></li>
         <li><a href="tvshows.html">TV Shows</a></li>
         <li><a href="kdrama.html">Korean</a></li>
-		<li><a href="fallback.html" class="nav-link">Fallback</a></li>
+        <li><a href="donation.html">Donation</a></li>
+		<li><a href="fallback.html">Fallback</a></li>
     </ul>
 </nav>
 <section aria-label="Hero" class="w-full">
@@ -529,6 +561,14 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+    .suggestions-dropdown {
+        width: 190%;
+    }
+}
+
 
 
 .nav-links {
