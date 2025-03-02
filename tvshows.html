@@ -681,6 +681,10 @@ body {
 }
 
 }
+.media-type {
+    color: red;
+    font-weight: bold;
+}
 
 </style>
 
@@ -755,17 +759,23 @@ searchInput.addEventListener('input', async () => {
     results.forEach(result => {
         const suggestionItem = document.createElement('div');
         suggestionItem.className = 'suggestion-item';
+        
+        let title = result.title || result.name;
+        let posterPath = result.poster_path ? `https://image.tmdb.org/t/p/w500${result.poster_path}` : 'default-image-url'; 
+        
         suggestionItem.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" alt="${result.title || result.name}" />
-            <span>${result.title || result.name}</span>
+            <img src="${posterPath}" alt="${title}" />
+            <span>${title}</span>
+            <span class="media-type">${result.media_type === 'movie' ? '(Movie)' : '(TV Show)'}</span>
         `;
+
         suggestionItem.addEventListener('click', () => {
-            displayDetails(result);
+            displayDetails(result); 
         });
-        suggestionsDropdown.appendChild(suggestionItem);
+        suggestionsDropdown.appendChild(suggestionItem); 
     });
 
-    suggestionsDropdown.style.display = 'block'; // Show dropdown
+    suggestionsDropdown.style.display = 'block'; 
 });
 
 clearButton.addEventListener('click', () => {
