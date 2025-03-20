@@ -1,0 +1,982 @@
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="referrer" content="origin" />
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Meowflex</title>
+	<meta name="description" content="Stream FREE movies, TV shows, Korean movies, and Kdramas online instantly! Watch on any device — smart TV, gaming console, PC, Mac, mobile, or tablet. Enjoy thousands of titles, from trending Korean movies and top-rated Kdramas to classic TV shows and new movie releases. With free streaming across devices, access a seamless viewing experience anytime, anywhere. Start streaming free Korean movies and Kdramas today for the best in entertainment!"/>
+	
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1FRGFYQGQP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1FRGFYQGQP');
+</script>
+	
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WXRPPZNF');</script>
+<!-- End Google Tag Manager -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Meowflex",
+  "url": "https://www.meowflex.com",
+  "logo": "images/favicon.ico"
+}
+</script>
+    </head>	
+    <style>
+        
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+			background-color: #121212;
+			overflow-x: hidden;
+        }
+
+        .clear-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+    display: none;
+    border-radius: 50%;
+}
+
+/* Mobile view adjustments */
+@media screen and (max-width: 768px) {
+    .clear-button {
+        display: none;
+        right: 5px; /* Adjust the right positioning for mobile */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px; /* Optionally reduce font size */
+    }
+}
+        .suggestions-dropdown {
+            position: absolute;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-height: 500px;
+            overflow-y: auto;
+            display: none; 
+            z-index: 9999; 
+            top: 40px; 
+        }
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+        .suggestion-item img {
+            width: 60px; 
+            height: auto;
+            margin-right: 30px;
+        }
+		
+.fixed-width-container {
+    width: 100%;
+    max-width: 1430px;
+    margin: 0 auto;
+    padding: 0 0px;
+}
+
+@media (max-width: 768px) {
+    .fixed-width-container {
+        padding: 0 8px; 
+    }
+
+    h1 {
+        font-size: 1.5rem; 
+    }
+
+    p {
+        font-size: 1rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .fixed-width-container {
+        padding: 0 4px; 
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+  
+    </style>		
+</head>
+<body style="background-color: #121212;">
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXRPPZNF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    		
+    
+<div class="fixed-width-container">
+<div class="navbar">
+    <a href="home.html" class="logo-link">
+        <img src="android-chrome-192x192.png" alt="Meowflex Logo" class="logo-image"> 
+    </a>
+		<span class="website-title">Meowflex</span>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for movies or TV shows..." />
+        <button class="clear-button" id="clearButton">✖</button>
+        <div id="suggestions" class="suggestions-dropdown"></div>
+    </div>    
+    <div class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>   
+    <nav class="nav-links" id="navLinks">
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="movies.html" class="nav-link">Movies</a>
+        <a href="tvshows.html" class="nav-link">TVShows</a>
+        <a href="kdrama.html" class="nav-link">Korean</a>
+        <a href="noypi.html" class="nav-link">Pinoy Movies</a>
+		<a href="fallback.html" class="nav-link">Fallback</a>
+    </nav>
+</div>
+<nav class="mobile-nav" id="mobileNav">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="tvshows.html">TV Shows</a></li>
+        <li><a href="kdrama.html">Korean</a></li>
+        <li><a href="noypi.html">Pinoy Movies</a></li>
+		<li><a href="fallback.html">Fallback</a></li>
+    </ul>
+</nav>
+<section aria-label="Hero" class="w-full">
+    <div id="hero-slider" class="relative w-full overflow-hidden">
+         <div class="slides"></div>
+    </div>
+</section>
+
+
+<!-- HTML Structure -->
+<section id="pinoy-movies">
+    <h2>Pinoy Movies</h2>
+    <div id="movie-list"></div>
+
+    <!-- Movie Popup -->
+    <div id="movie-popup" style="display: none;">
+        <button id="close-popup">X</button>
+        <iframe id="movie-iframe" width="80%" height="80%" frameborder="0"></iframe>
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination">
+        <button id="prev-page">Previous</button>
+        <button id="next-page">Next</button>
+    </div>
+</section>
+
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+	background-color: #121212;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #1a0000;
+    padding: 15px;
+    color: white;
+    position: relative;
+	width: 100%; 
+    box-sizing: border-box; 
+    z-index: 10; 
+	max-width: 1430px;
+
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px; 
+    }
+}
+
+
+.logo-link img {
+    height: 35px;
+    margin-left: 10px; 
+}
+
+.website-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-left: 7px; 
+}
+
+@media {
+	.website-title {
+		font-size: 19px;
+	}
+}
+
+.search-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: relative;
+    width: 50%; 
+	margin-right: 70px;
+	margin-left: 70px;
+}
+
+@media (max-width: 768px) { 
+    .search-container {
+        display: flex;
+        position: relative;
+        width: 40%; 
+        max-width: 400px; 
+        margin-left: 20px;
+		margin-right: 20px;
+    }
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    border: none;
+}
+.suggestions-dropdown {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+    .suggestions-dropdown {
+        width: 190%;
+    }
+}
+
+
+.nav-links {
+    display: flex;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+	margin-right: 30px;
+	font-weight: bold;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+.mobile-nav {
+    display: none; 
+    position: absolute; 
+    top: 50px; 
+    right: 0px; 
+    width: fit-content; 
+    background-color: #1a0000; 
+    font-weight: bold; 
+    opacity: 0.7; 
+    margin-top: 7px; 
+    transition: opacity 0.3s ease, display 0.3s ease; 
+    border-bottom-left-radius: 10px; 
+	border-bottom-right-radius: 10px; 	
+    z-index: 20; 
+    flex-direction: column; 
+    align-items: flex-end; 
+	text-align: right;
+
+}
+.mobile-nav.active {
+    display: flex; 
+    opacity: 1; 
+}
+
+.mobile-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; 
+}
+
+.mobile-nav li {
+    padding: 5px 0; 
+}
+
+.mobile-nav a {
+    text-decoration: none;
+    color: #0a0a0f;
+    font-size: 18px;
+    display: block;
+    width: 95%;
+}
+
+.mobile-nav a:hover {
+    background-color: #444;
+}
+
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+		margin-right: 20px;
+    }
+
+    .burger-menu {
+        display: flex;
+        margin-right: 20px;
+    }
+
+    .mobile-nav.active {
+        display: block;
+    }
+	
+    .logo-link img {
+        height: 35px;
+        margin-left: 0px;
+    }
+	
+.mobile-nav:hover {
+    opacity: 100%; 
+}
+
+.mobile-nav ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+	font-size: 15px;
+}
+
+.mobile-nav li {
+    padding: 5px; 
+	margin-right: 15px;
+	font-size: 15px;
+	
+}
+
+.mobile-nav a {
+    text-decoration: none; 
+    color: white; 
+    display: block; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+	font-size: 15px;
+}
+
+.mobile-nav a:hover {
+    background-color: transparent; 
+    color: red; 
+	}
+
+}
+
+.suggestion-item .media-type {
+    font-size: 0.8rem;  /* Makes the text small */
+    color: red;         /* Makes the text red */
+    margin-left: 5px;   /* Adds a little space between the title and the indicator */
+    font-weight: bold;  /* Optional: Makes the text bold */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .suggestion-item .media-type {
+        font-size: 0.9rem;   /* Slightly larger font size for readability on mobile */
+        color: #ff5733;      /* A different color for mobile (optional) */
+        margin-left: 10px;   /* Adds more space between title and indicator on mobile */
+    }
+
+.media-type {
+    color: red;
+    font-weight: bold;
+}
+
+</style>
+
+<script>
+document.getElementById('burgerMenu').addEventListener('click', function(event) {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('active');
+    event.stopPropagation(); 
+});
+document.addEventListener('click', function(event) {
+    const nav = document.getElementById('mobileNav');
+    const burgerMenu = document.getElementById('burgerMenu');
+
+    if (!nav.contains(event.target) && !burgerMenu.contains(event.target)) {
+        nav.classList.remove('active'); 
+    }
+});
+
+document.getElementById('searchInput').addEventListener('focus', function() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.remove('active'); 
+});
+document.getElementById('videoPlayer').addEventListener('focus', function() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.remove('active'); 
+});
+
+</script>
+
+<style>
+/* Movie Section */
+#pinoy-movies {
+    text-align: center;
+    padding: 20px;
+	color: #bbb;
+}
+
+#movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Movie Cards */
+.movie-card {
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    background-color: #222;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.movie-title {
+    padding: 8px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Movie Popup */
+#movie-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#movie-iframe {
+    width: 80%;
+    height: 60vh;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button - Centered at the Top of the iFrame */
+#close-popup {
+    position: absolute;
+    top: 30px; /* Default position for desktop */
+    left: 50%;
+    transform: translateX(-50%);
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure it stays on top */
+    min-width: 100px; /* Adjusted width for desktop */
+    text-align: center;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    #close-popup {
+        top: 20px; /* Adjust position for mobile */
+        font-size: 14px; /* Reduce font size */
+        padding: 6px 8px; /* Reduce padding */
+        width: 15px; /* Reduce width for mobile */
+    }
+}
+
+
+#close-popup:hover {
+    background: darkred;
+}
+
+/* Pagination */
+#pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#pagination button {
+    padding: 10px 20px;
+    background: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+#pagination button:disabled {
+    background: #777;
+    cursor: not-allowed;
+}
+
+#pagination button:hover:not(:disabled) {
+    background: #222;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    #movie-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    #movie-iframe {
+        width: 90%;
+        height: 50vh;
+    }
+
+    .movie-title {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #close-popup {
+        top: 10px;
+        right: 10px;
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+</style>
+
+<script>
+const API_KEY = "AIzaSyBGwpUCdgZzvk353mJYOKL5UQdDa2yrouo";
+const channelIds = [
+    "UCS_XKv_M_HXLP10TxLfKvEQ",
+    "UCbaHbu02DtSydvFhrO4t1gg",
+    "UC1D36wr10qyCfisHulZ5G8Q",
+    "UC69I8egELqWywoX5wrh2KxQ",
+    "UCI5YsqsHxdSlaj9ORrnu1DA",
+    "UChh0rmwGvToBd3owvN2vRMg",
+    "UCNP49xH_JCwxHIfKdN8dCQw" // New Channel ID added
+];
+
+const movieList = document.getElementById("movie-list");
+const moviePopup = document.getElementById("movie-popup");
+const movieIframe = document.getElementById("movie-iframe");
+const closePopup = document.getElementById("close-popup");
+const prevPageBtn = document.getElementById("prev-page");
+const nextPageBtn = document.getElementById("next-page");
+
+let nextPageToken = null;
+let prevPageToken = null;
+
+async function fetchMovies(pageToken = "") {
+    movieList.innerHTML = "<p>Loading movies...</p>";
+    const channelId = channelIds[Math.floor(Math.random() * channelIds.length)];
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&q=full%20movie&type=video&videoDuration=long&maxResults=200&pageToken=${pageToken}&key=${API_KEY}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        nextPageToken = data.nextPageToken || null;
+        prevPageToken = data.prevPageToken || null;
+
+        displayMovies(data.items);
+    } catch (error) {
+        console.error("Error fetching movies:", error);
+        movieList.innerHTML = "<p>Failed to load movies.</p>";
+    }
+}
+
+function displayMovies(movies) {
+    movieList.innerHTML = "";
+    movies.forEach(movie => {
+        const movieCard = document.createElement("div");
+        movieCard.classList.add("movie-card");
+        movieCard.innerHTML = `
+            <img src="${movie.snippet.thumbnails.medium.url}" alt="${movie.snippet.title}">
+            <div class="movie-title">${movie.snippet.title}</div>
+        `;
+        movieCard.addEventListener("click", () => openMoviePopup(movie.id.videoId));
+        movieList.appendChild(movieCard);
+    });
+}
+
+function openMoviePopup(videoId) {
+    movieIframe.src = `https://www.youtube.com/embed/${videoId}`;
+    moviePopup.style.display = "flex";
+}
+
+closePopup.addEventListener("click", () => {
+    moviePopup.style.display = "none";
+    movieIframe.src = "";
+});
+
+prevPageBtn.addEventListener("click", () => {
+    if (prevPageToken) fetchMovies(prevPageToken);
+});
+
+nextPageBtn.addEventListener("click", () => {
+    if (nextPageToken) fetchMovies(nextPageToken);
+});
+
+// Load movies on page load
+fetchMovies();
+
+</script>
+
+
+<footer class="footer-container">
+    <div class="footer-content">
+        <div class="social-media" style="text-align: center;">
+            <a href="https://www.facebook.com/profile.html?id=61567326685356" target="_blank" aria-label="Facebook">
+                <img src="fb.png" alt="Instagram Logo" width="35" height="35"/>
+            </a>
+            <a href="https://www.instagram.com/meowmeowflex/" target="_blank" aria-label="Instagram">
+                <img src="instagram.png" alt="Instagram Logo" width="40" height="40"/>
+            </a>
+            <a href="https://www.tiktok.com/@meowflex2" target="_blank" aria-label="TikTok">
+                <img src="tiktok.png" alt="Instagram Logo" width="35" height="35"/>
+            </a>
+        </div>
+        <p class="rights-reserved">© 2024 Meowflex. All rights reserved.</p>
+        <p><a href="#" id="mit-license-link" class="mit-license-link">MIT License</a> <a style="color: #bbb;">|</a> <a href="#" class="disclaimer-title" id="disclaimer-link">Disclaimer</a> <a style="color: #bbb;">|</a> <a href="donation.html" class="donation-title" id="donation-link">Donation</a>
+ </p>       
+    </div>
+</footer>
+
+
+<div id="mit-license-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="close-license-modal">&times;</span>
+        <h2>MIT License</h2>
+        <pre class="license-text">
+The MIT License (MIT)
+
+Copyright (c) 2024 Meowflex
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+        </pre>
+    </div>
+</div>
+
+
+<div id="disclaimer-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="close-disclaimer-modal">&times;</span>
+        <p>Meowflex does not host any files, it merely pulls streams from 3rd party services. Legal issues should be taken up with the file hosts and providers. Meowflex is not responsible for any media files shown by the video providers.</p>
+    </div>
+</div>
+
+<style>
+.footer-container {
+    background-color: #0a0a0f;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 97%;
+    font-family: Arial, sans-serif;
+    overflow: hidden; 
+	margin-top: 30px;
+}
+
+
+.footer-content {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) { 
+    .footer-container {
+        margin-bottom: 0; 
+    }
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.rights-reserved {
+    font-size: 14px; 
+    margin-bottom: 15px;
+    color: #bbb;
+}
+
+.mit-license-link {
+    color: #bbb;
+    text-decoration: none;
+	font-size: 14px;
+}
+
+.mit-license-link:hover {
+    text-decoration: underline;
+	color: #007BFF;
+}
+
+
+@media (max-width: 600px) {
+    .rights-reserved {
+        font-size: 12px; 
+        margin-bottom: 10px; 
+    }
+
+    .mit-license-link {
+        font-size: 12px; 
+    }
+	.disclaimer-title {
+		font-size: 12px;
+	}
+}
+.disclaimer-title {
+    font-size: 14px; 
+    color: #bbb; 
+    text-decoration: none; 
+    transition: color 0.3s, text-decoration 0.3s; 
+}
+
+.disclaimer-title:hover {
+    color: #007BFF; 
+    text-decoration: underline; 
+}
+
+.disclaimer-text {
+    font-size: 14px; 
+}
+@media (max-width: 600px) {
+    .disclaimer-title {
+        font-size: 12px; 
+    }
+
+    .disclaimer-text {
+        font-size: 11px; 
+    }
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: auto; 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    color: #333;
+}
+
+.close-modal {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.license-text {
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ddd;
+    max-height: 60vh; 
+    overflow-y: auto;
+}
+
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+        margin: 20% auto; 
+    }
+}
+
+.social-media {
+    margin-bottom: 15px; 
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 10px; 
+}
+
+.social-icon img {
+    width: 24px; 
+    height: 24px; 
+    vertical-align: middle; 
+}
+
+.social-media {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+}
+
+.social-media a {
+    display: inline-block; 
+    width: 40px; 
+    height: 40px; 
+}
+
+</style>
+<script>
+var modal = document.getElementById('mit-license-modal');
+var link = document.getElementById('mit-license-link');
+var closeBtn = document.getElementById('close-license-modal');
+
+link.addEventListener('click', function(event) {
+    event.preventDefault();
+    modal.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+var disclaimerModal = document.getElementById('disclaimer-modal');
+var disclaimerLink = document.getElementById('disclaimer-link');
+var closeDisclaimerBtn = document.getElementById('close-disclaimer-modal');
+
+disclaimerLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    disclaimerModal.style.display = 'block';
+});
+
+closeDisclaimerBtn.addEventListener('click', function() {
+    disclaimerModal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target == disclaimerModal) {
+        disclaimerModal.style.display = 'none';
+    }
+});
+
+</script>
+</div>
+</body>
+</html>
