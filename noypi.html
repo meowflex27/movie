@@ -623,6 +623,29 @@ document.getElementById('videoPlayer').addEventListener('focus', function() {
         font-size: 14px;
     }
 }
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#back-to-top:hover {
+    background: #cc0000;
+}
+
 </style>
 
 <script>
@@ -644,31 +667,51 @@ const closePopup = document.getElementById("close-popup");
 const prevPageBtn = document.getElementById("prev-page");
 const nextPageBtn = document.getElementById("next-page");
 
-let nextPageToken = null;
-let prevPageToken = null;
+let allMovies = []; // Stores all fetched movies
+let currentIndex = 0; // Tracks the current movie position
+const moviesPerPage = 100; // Number of movies per page
 
-async function fetchMovies(pageToken = "") {
-    movieList.innerHTML = "<p>Loading movies...</p>";
-    const channelId = channelIds[Math.floor(Math.random() * channelIds.length)];
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&q=full%20movie&type=video&videoDuration=long&maxResults=200&pageToken=${pageToken}&key=${API_KEY}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        nextPageToken = data.nextPageToken || null;
-        prevPageToken = data.prevPageToken || null;
-
-        displayMovies(data.items);
-    } catch (error) {
-        console.error("Error fetching movies:", error);
-        movieList.innerHTML = "<p>Failed to load movies.</p>";
+// Shuffle function to randomize array order
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
 }
 
-function displayMovies(movies) {
+// Fetch movies from all channels
+async function fetchMovies() {
+    movieList.innerHTML = "<p>Loading movies...</p>";
+    let movies = [];
+
+    for (const channelId of channelIds) {
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&q=full%20movie&type=video&videoDuration=long&maxResults=50&key=${API_KEY}`;
+        
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.items) movies = movies.concat(data.items);
+        } catch (error) {
+            console.error(`Error fetching movies from ${channelId}:`, error);
+        }
+    }
+
+    if (movies.length > 0) {
+        shuffleArray(movies); // Shuffle movies
+        allMovies = movies;
+        currentIndex = 0; // Reset index
+        displayMovies();
+    } else {
+        movieList.innerHTML = "<p>No movies found.</p>";
+    }
+}
+
+// Display a batch of movies (100 per page)
+function displayMovies() {
     movieList.innerHTML = "";
-    movies.forEach(movie => {
+    const moviesToShow = allMovies.slice(currentIndex, currentIndex + moviesPerPage);
+
+    moviesToShow.forEach(movie => {
         const movieCard = document.createElement("div");
         movieCard.classList.add("movie-card");
         movieCard.innerHTML = `
@@ -678,28 +721,65 @@ function displayMovies(movies) {
         movieCard.addEventListener("click", () => openMoviePopup(movie.id.videoId));
         movieList.appendChild(movieCard);
     });
+
+    // Enable/disable pagination buttons
+    prevPageBtn.disabled = currentIndex === 0;
+    nextPageBtn.disabled = currentIndex + moviesPerPage >= allMovies.length;
 }
 
+// Open movie popup
 function openMoviePopup(videoId) {
     movieIframe.src = `https://www.youtube.com/embed/${videoId}`;
     moviePopup.style.display = "flex";
 }
 
+// Close movie popup
 closePopup.addEventListener("click", () => {
     moviePopup.style.display = "none";
     movieIframe.src = "";
 });
 
+// Handle pagination
 prevPageBtn.addEventListener("click", () => {
-    if (prevPageToken) fetchMovies(prevPageToken);
+    if (currentIndex > 0) {
+        currentIndex -= moviesPerPage;
+        displayMovies();
+    }
 });
 
 nextPageBtn.addEventListener("click", () => {
-    if (nextPageToken) fetchMovies(nextPageToken);
+    if (currentIndex + moviesPerPage < allMovies.length) {
+        currentIndex += moviesPerPage;
+        displayMovies();
+    }
 });
 
-// Load movies on page load
+// Auto-fetch new uploads daily
+setInterval(fetchMovies, 24 * 60 * 60 * 1000);
+
+// Initial fetch on page load
 fetchMovies();
+
+// Create Back to Top button
+const backToTopBtn = document.createElement("button");
+backToTopBtn.id = "back-to-top";
+backToTopBtn.innerHTML = "↑";
+document.body.appendChild(backToTopBtn);
+
+// Show button when scrolling down
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+});
+
+// Scroll to top when button is clicked
+backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 
 </script>
 
