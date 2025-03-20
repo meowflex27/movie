@@ -186,11 +186,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section id="pinoy-movies">
     <div id="movie-list"></div>
 
-    <!-- Movie Popup -->
-    <div id="movie-popup" style="display: none;">
-        <button id="close-popup">X</button>
-        <iframe id="movie-iframe" width="80%" height="80%" frameborder="0"></iframe>
-    </div>
+<!-- Movie Popup -->
+<div id="movie-popup" style="display: none;">
+    <button id="close-popup">X</button>
+    <button id="fullscreen-btn">⛶</button>
+    <iframe id="movie-iframe" width="80%" height="80%" frameborder="0" allowfullscreen></iframe>
+</div>
 
     <!-- Pagination -->
     <div id="pagination">
@@ -623,6 +624,24 @@ document.getElementById('videoPlayer').addEventListener('focus', function() {
     }
 }
 
+#fullscreen-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+#fullscreen-btn:hover {
+    background: #555;
+}
+	
 #back-to-top {
     position: fixed;
     bottom: 20px;
@@ -648,7 +667,7 @@ document.getElementById('videoPlayer').addEventListener('focus', function() {
 </style>
 
 <script>
-const API_KEY = "AIzaSyBGwpUCdgZzvk353mJYOKL5UQdDa2yrouo";
+const API_KEY = "AIzaSyAJ4KhxSFBFw-ir5oLYYH73Dp-lqt2bdVY";
 const channelIds = [
     "UCS_XKv_M_HXLP10TxLfKvEQ",
     "UCbaHbu02DtSydvFhrO4t1gg",
@@ -779,6 +798,19 @@ backToTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+fullscreenBtn.addEventListener("click", () => {
+    if (movieIframe.requestFullscreen) {
+        movieIframe.requestFullscreen();
+    } else if (movieIframe.mozRequestFullScreen) { // Firefox
+        movieIframe.mozRequestFullScreen();
+    } else if (movieIframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        movieIframe.webkitRequestFullscreen();
+    } else if (movieIframe.msRequestFullscreen) { // IE/Edge
+        movieIframe.msRequestFullscreen();
+    }
+});
 
 </script>
 
