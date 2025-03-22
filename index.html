@@ -1377,8 +1377,23 @@ startDailyUpdate();
     font-weight: bold; /* Bold weight for the number */
     z-index: 10; /* Ensure the number is above the image */
 }
+/* Mobile view adjustment */
+@media (max-width: 768px) {
+    .number {
+        font-size: 15vh; /* Smaller font size for mobile */
+        top: 5px; /* Adjusted top position */
+        left: 10px; /* Adjusted left position */
+    }
+}
 
-
+/* Extra small mobile view */
+@media (max-width: 480px) {
+    .number {
+        font-size: 12vh; /* Even smaller font size for very small screens */
+        top: 5px; /* Keep top positioning consistent */
+        left: 8px; /* Adjust left position slightly */
+    }
+}
 </style>
 <script>
 const pinoyMovieIds = [
