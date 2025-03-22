@@ -667,8 +667,181 @@ document.getElementById('videoPlayer').addEventListener('focus', function() {
 </style>
 
 <script>
-const _0x1c13f5=_0x26e2;(function(_0x408ef0,_0x5bf076){const _0x5ef267=_0x26e2,_0x2eda16=_0x408ef0();while(!![]){try{const _0x47275f=parseInt(_0x5ef267(0xc6))/0x1+-parseInt(_0x5ef267(0x94))/0x2*(parseInt(_0x5ef267(0x9e))/0x3)+parseInt(_0x5ef267(0xc3))/0x4+parseInt(_0x5ef267(0xc2))/0x5*(parseInt(_0x5ef267(0xa6))/0x6)+-parseInt(_0x5ef267(0xc8))/0x7+-parseInt(_0x5ef267(0x8e))/0x8+parseInt(_0x5ef267(0x93))/0x9;if(_0x47275f===_0x5bf076)break;else _0x2eda16['push'](_0x2eda16['shift']());}catch(_0x5e6653){_0x2eda16['push'](_0x2eda16['shift']());}}}(_0x1a07,0x76160),API_KEYS=['AIzaSyB8kMlp4xdi0vTypO0QjXwI41L1Se9EsZ4',_0x1c13f5(0xc7),'AIzaSyAJ4KhxSFBFw-ir5oLYYH73Dp-lqt2bdVY',_0x1c13f5(0x8a),_0x1c13f5(0x99)]);let currentApiKeyIndex=0x0;function getApiKey(){return API_KEYS[currentApiKeyIndex];}const channelIds=[_0x1c13f5(0xba),'UCbaHbu02DtSydvFhrO4t1gg',_0x1c13f5(0xa5),_0x1c13f5(0x95),'UCI5YsqsHxdSlaj9ORrnu1DA',_0x1c13f5(0xbc),_0x1c13f5(0xb2),_0x1c13f5(0xcd),_0x1c13f5(0xc1),'UCzggCZVkynvnjNV29L9EccA',_0x1c13f5(0xcb)],movieList=document[_0x1c13f5(0xb6)](_0x1c13f5(0xae)),moviePopup=document[_0x1c13f5(0xb6)](_0x1c13f5(0xd3)),movieIframe=document['getElementById'](_0x1c13f5(0x8c)),closePopup=document[_0x1c13f5(0xb6)](_0x1c13f5(0x9c)),prevPageBtn=document[_0x1c13f5(0xb6)](_0x1c13f5(0xb0)),nextPageBtn=document[_0x1c13f5(0xb6)](_0x1c13f5(0xbb));let allMovies=[],currentIndex=0x0;const moviesPerPage=0x64;function shuffleArray(_0x3e15f0){const _0x46d174=_0x1c13f5;for(let _0xf6f4fd=_0x3e15f0[_0x46d174(0xb4)]-0x1;_0xf6f4fd>0x0;_0xf6f4fd--){const _0x22331f=Math[_0x46d174(0x9b)](Math['random']()*(_0xf6f4fd+0x1));[_0x3e15f0[_0xf6f4fd],_0x3e15f0[_0x22331f]]=[_0x3e15f0[_0x22331f],_0x3e15f0[_0xf6f4fd]];}}function _0x1a07(){const _0x137ba1=['prev-page','videoId','UCNP49xH_JCwxHIfKdN8dCQw','none','length','src','getElementById','button','error','warn','UCS_XKv_M_HXLP10TxLfKvEQ','next-page','UChh0rmwGvToBd3owvN2vRMg','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','mozRequestFullScreen','disabled','scrollTo','UCNJ4O0LvYuMOiOvS-g6eADA','5830noOYHP','334172ImaFrg','title','fullscreen-btn','730888FhIhYs','AIzaSyCifM0y-Pr0bkxL1vGnpwCQDLYHpOvgFZM','6716752SDRDLi','scrollY','classList','UCKL5hAuzgFQsyrsQKgU0Qng','back-to-top','UCstEtN0pgOmCf02EdXsGChw','display','<p>Loading\x20movies...</p>','smooth','\x22\x20alt=\x22','add','movie-popup','webkitRequestFullscreen','flex','AIzaSyBGwpUCdgZzvk353mJYOKL5UQdDa2yrouo','div','movie-iframe','click','6237576hzqIBp','msRequestFullscreen','forEach','block','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22movie-title\x22>','12752298xSCsdc','2TltImh','UC69I8egELqWywoX5wrh2KxQ','requestFullscreen','innerHTML','https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=','AIzaSyC6uPQsZkl-RKRPqZg8R_cKThZODlWautQ','concat','floor','close-popup','Error\x20fetching\x20movies\x20from\x20','2435442dEBMbo','slice','style','items','scroll','appendChild','code','UC1D36wr10qyCfisHulZ5G8Q','4134LAatKo','https://www.youtube.com/embed/','Quota\x20exceeded\x20for\x20API\x20key:\x20','snippet','medium','json','movie-card','thumbnails','movie-list','addEventListener'];_0x1a07=function(){return _0x137ba1;};return _0x1a07();}async function fetchMovies(){const _0x4fdaaa=_0x1c13f5;movieList[_0x4fdaaa(0x97)]=_0x4fdaaa(0xcf);let _0xfc4501=[];for(const _0x12a2cc of channelIds){let _0x10982f=![];while(!_0x10982f&&currentApiKeyIndex<API_KEYS[_0x4fdaaa(0xb4)]){const _0x4e2794=getApiKey(),_0x38877d=_0x4fdaaa(0x98)+_0x12a2cc+'&q=full%20movie&type=video&videoDuration=long&maxResults=50&key='+_0x4e2794;try{const _0x375a2c=await fetch(_0x38877d),_0x582372=await _0x375a2c[_0x4fdaaa(0xab)]();if(_0x582372[_0x4fdaaa(0xb8)]&&_0x582372[_0x4fdaaa(0xb8)][_0x4fdaaa(0xa4)]===0x193)console[_0x4fdaaa(0xb9)](_0x4fdaaa(0xa8)+_0x4e2794+'.\x20Switching\x20to\x20the\x20next\x20key...'),currentApiKeyIndex++;else{if(_0x582372[_0x4fdaaa(0xa1)])_0xfc4501=_0xfc4501[_0x4fdaaa(0x9a)](_0x582372[_0x4fdaaa(0xa1)]);_0x10982f=!![];}}catch(_0x554a7f){console[_0x4fdaaa(0xb8)](_0x4fdaaa(0x9d)+_0x12a2cc+':',_0x554a7f);}}}_0xfc4501[_0x4fdaaa(0xb4)]>0x0?(shuffleArray(_0xfc4501),allMovies=_0xfc4501,currentIndex=0x0,displayMovies()):movieList['innerHTML']='<p>No\x20movies\x20found.</p>';}function _0x26e2(_0x175c3c,_0x2f144c){const _0x1a0794=_0x1a07();return _0x26e2=function(_0x26e2a7,_0x405451){_0x26e2a7=_0x26e2a7-0x88;let _0x13a85b=_0x1a0794[_0x26e2a7];return _0x13a85b;},_0x26e2(_0x175c3c,_0x2f144c);}function displayMovies(){const _0x42cce9=_0x1c13f5;movieList[_0x42cce9(0x97)]='';const _0x1167c6=allMovies[_0x42cce9(0x9f)](currentIndex,currentIndex+moviesPerPage);_0x1167c6[_0x42cce9(0x90)](_0xd600b=>{const _0x5efc8e=_0x42cce9,_0x42a453=document['createElement'](_0x5efc8e(0x8b));_0x42a453[_0x5efc8e(0xca)][_0x5efc8e(0xd2)](_0x5efc8e(0xac)),_0x42a453[_0x5efc8e(0x97)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22'+_0xd600b[_0x5efc8e(0xa9)][_0x5efc8e(0xad)][_0x5efc8e(0xaa)]['url']+_0x5efc8e(0xd1)+_0xd600b[_0x5efc8e(0xa9)][_0x5efc8e(0xc4)]+_0x5efc8e(0x92)+_0xd600b[_0x5efc8e(0xa9)]['title']+_0x5efc8e(0xbd),_0x42a453[_0x5efc8e(0xaf)](_0x5efc8e(0x8d),()=>openMoviePopup(_0xd600b['id'][_0x5efc8e(0xb1)])),movieList[_0x5efc8e(0xa3)](_0x42a453);}),prevPageBtn[_0x42cce9(0xbf)]=currentIndex===0x0,nextPageBtn[_0x42cce9(0xbf)]=currentIndex+moviesPerPage>=allMovies[_0x42cce9(0xb4)];}function openMoviePopup(_0x4c117e){const _0xe49b42=_0x1c13f5;movieIframe[_0xe49b42(0xb5)]=_0xe49b42(0xa7)+_0x4c117e,moviePopup[_0xe49b42(0xa0)]['display']=_0xe49b42(0x89);}closePopup[_0x1c13f5(0xaf)](_0x1c13f5(0x8d),()=>{const _0x44d263=_0x1c13f5;moviePopup[_0x44d263(0xa0)][_0x44d263(0xce)]=_0x44d263(0xb3),movieIframe[_0x44d263(0xb5)]='';}),prevPageBtn[_0x1c13f5(0xaf)](_0x1c13f5(0x8d),()=>{currentIndex>0x0&&(currentIndex-=moviesPerPage,displayMovies());}),nextPageBtn[_0x1c13f5(0xaf)]('click',()=>{const _0x3cf763=_0x1c13f5;currentIndex+moviesPerPage<allMovies[_0x3cf763(0xb4)]&&(currentIndex+=moviesPerPage,displayMovies());}),setInterval(fetchMovies,0x18*0x3c*0x3c*0x3e8),fetchMovies();const backToTopBtn=document['createElement'](_0x1c13f5(0xb7));backToTopBtn['id']=_0x1c13f5(0xcc),backToTopBtn[_0x1c13f5(0x97)]='↑',document['body'][_0x1c13f5(0xa3)](backToTopBtn),window['addEventListener'](_0x1c13f5(0xa2),()=>{const _0x657499=_0x1c13f5;backToTopBtn[_0x657499(0xa0)][_0x657499(0xce)]=window[_0x657499(0xc9)]>0x12c?_0x657499(0x91):_0x657499(0xb3);}),backToTopBtn[_0x1c13f5(0xaf)](_0x1c13f5(0x8d),()=>{const _0x8cc9f=_0x1c13f5;window[_0x8cc9f(0xc0)]({'top':0x0,'behavior':_0x8cc9f(0xd0)});});const fullscreenBtn=document[_0x1c13f5(0xb6)](_0x1c13f5(0xc5));fullscreenBtn[_0x1c13f5(0xaf)](_0x1c13f5(0x8d),()=>{const _0x95f62b=_0x1c13f5;if(movieIframe[_0x95f62b(0x96)])movieIframe[_0x95f62b(0x96)]();else{if(movieIframe[_0x95f62b(0xbe)])movieIframe[_0x95f62b(0xbe)]();else{if(movieIframe[_0x95f62b(0x88)])movieIframe[_0x95f62b(0x88)]();else movieIframe['msRequestFullscreen']&&movieIframe[_0x95f62b(0x8f)]();}}});
+const API_KEYS = [
+    "AIzaSyB8kMlp4xdi0vTypO0QjXwI41L1Se9EsZ4",
+    "AIzaSyCifM0y-Pr0bkxL1vGnpwCQDLYHpOvgFZM",
+    "AIzaSyAJ4KhxSFBFw-ir5oLYYH73Dp-lqt2bdVY",
+    "AIzaSyBGwpUCdgZzvk353mJYOKL5UQdDa2yrouo",
+    "AIzaSyC6uPQsZkl-RKRPqZg8R_cKThZODlWautQ",
+    "AIzaSyCLJ0o5LT2S-7g0-CGT73PItH3FCVYEats",
+    "AIzaSyAMwkcOaJ-9QYlzG2mWRR6j7cQ8_bi_4Vc",
+    "AIzaSyCONoY1V0FIxMhv9esGpP1da23ZPuNSdes",
+    "AIzaSyCHKcqfI2J5tSiz8XSESL6N-pFN59210G8",
+    "AIzaSyBrE-vozKSRBjFQpCRJPe61KfoMaTj26UQ"
+];
+
+let currentApiKeyIndex = 0;
+function getApiKey() {
+    return API_KEYS[currentApiKeyIndex];
+}
+
+const channelIds = [
+    "UCS_XKv_M_HXLP10TxLfKvEQ",
+    "UCbaHbu02DtSydvFhrO4t1gg",
+    "UC1D36wr10qyCfisHulZ5G8Q",
+    "UC69I8egELqWywoX5wrh2KxQ",
+    "UCI5YsqsHxdSlaj9ORrnu1DA",
+    "UChh0rmwGvToBd3owvN2vRMg",
+    "UCNP49xH_JCwxHIfKdN8dCQw",
+    "UCstEtN0pgOmCf02EdXsGChw",
+    "UCNJ4O0LvYuMOiOvS-g6eADA",
+    "UCzggCZVkynvnjNV29L9EccA",
+    "UCKL5hAuzgFQsyrsQKgU0Qng"
+];
+
+const movieList = document.getElementById("movie-list");
+const moviePopup = document.getElementById("movie-popup");
+const movieIframe = document.getElementById("movie-iframe");
+const closePopup = document.getElementById("close-popup");
+const prevPageBtn = document.getElementById("prev-page");
+const nextPageBtn = document.getElementById("next-page");
+
+let allMovies = [];
+let currentIndex = 0;
+const moviesPerPage = 100;
+
+// Shuffle function to randomize movies
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Function to fetch movies from all channels
+async function fetchMovies() {
+    movieList.innerHTML = "<p>Loading movies...</p>";
+    let movies = [];
+
+    for (const channelId of channelIds) {
+        let success = false;
+
+        while (!success && currentApiKeyIndex < API_KEYS.length) {
+            const apiKey = getApiKey();
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&q=full%20movie&type=video&videoDuration=long&maxResults=50&key=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.error && data.error.code === 403) {
+                    console.warn(`Quota exceeded for API key: ${apiKey}. Switching to the next key...`);
+                    currentApiKeyIndex++;
+                } else {
+                    if (data.items) movies = movies.concat(data.items);
+                    success = true;
+                }
+            } catch (error) {
+                console.error(`Error fetching movies from ${channelId}:`, error);
+            }
+        }
+    }
+
+    if (movies.length > 0) {
+        shuffleArray(movies);
+        allMovies = movies;
+        currentIndex = 0;
+        displayMovies();
+    } else {
+        movieList.innerHTML = "<p>No movies found.</p>";
+    }
+}
+
+// Function to display a batch of movies
+function displayMovies() {
+    movieList.innerHTML = "";
+    const moviesToShow = allMovies.slice(currentIndex, currentIndex + moviesPerPage);
+
+    moviesToShow.forEach(movie => {
+        const movieCard = document.createElement("div");
+        movieCard.classList.add("movie-card");
+        movieCard.innerHTML = `
+            <img src="${movie.snippet.thumbnails.medium.url}" alt="${movie.snippet.title}">
+            <div class="movie-title">${movie.snippet.title}</div>
+        `;
+        movieCard.addEventListener("click", () => openMoviePopup(movie.id.videoId));
+        movieList.appendChild(movieCard);
+    });
+
+    prevPageBtn.disabled = currentIndex === 0;
+    nextPageBtn.disabled = currentIndex + moviesPerPage >= allMovies.length;
+}
+
+// Function to open movie popup
+function openMoviePopup(videoId) {
+    movieIframe.src = `https://www.youtube.com/embed/${videoId}`;
+    moviePopup.style.display = "flex";
+}
+
+// Close movie popup
+closePopup.addEventListener("click", () => {
+    moviePopup.style.display = "none";
+    movieIframe.src = "";
+});
+
+// Pagination handling
+prevPageBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+        currentIndex -= moviesPerPage;
+        displayMovies();
+    }
+});
+
+nextPageBtn.addEventListener("click", () => {
+    if (currentIndex + moviesPerPage < allMovies.length) {
+        currentIndex += moviesPerPage;
+        displayMovies();
+    }
+});
+
+// Auto-fetch new uploads daily
+setInterval(fetchMovies, 24 * 60 * 60 * 1000);
+
+// Initial fetch on page load
+fetchMovies();
+
+// Back to Top button
+const backToTopBtn = document.createElement("button");
+backToTopBtn.id = "back-to-top";
+backToTopBtn.innerHTML = "↑";
+document.body.appendChild(backToTopBtn);
+
+// Show button when scrolling
+window.addEventListener("scroll", () => {
+    backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+});
+
+// Scroll to top on button click
+backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Fullscreen button
+const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+fullscreenBtn.addEventListener("click", () => {
+    if (movieIframe.requestFullscreen) {
+        movieIframe.requestFullscreen();
+    } else if (movieIframe.mozRequestFullScreen) {
+        movieIframe.mozRequestFullScreen();
+    } else if (movieIframe.webkitRequestFullscreen) {
+        movieIframe.webkitRequestFullscreen();
+    } else if (movieIframe.msRequestFullscreen) {
+        movieIframe.msRequestFullscreen();
+    }
+});
 </script>
+
 
 <footer class="footer-container">
     <div class="footer-content">
