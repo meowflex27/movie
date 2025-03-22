@@ -4,15 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="referrer" content="origin" />
-	<link rel="icon" type="image/x-icon" href="favicon.ico
-	<link rel="icon" type="image/png" sizes="192x192" href="192x192.png">
-        <link rel="icon" type="image/png" sizes="512x512" href="512x512.png">
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-    <!-- Manifest File (for PWA) -->
-    <link rel="manifest" href="manifest.json">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Meowflex</title>
 	<meta name="description" content="Stream FREE movies, TV shows, Korean movies, and Kdramas online instantly! Watch on any device — smart TV, gaming console, PC, Mac, mobile, or tablet. Enjoy thousands of titles, from trending Korean movies and top-rated Kdramas to classic TV shows and new movie releases. With free streaming across devices, access a seamless viewing experience anytime, anywhere. Start streaming free Korean movies and Kdramas today for the best in entertainment!"/>
 	
@@ -254,6 +246,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <button class="carousel-button right" id="next-top-rated-tv-show">&#10095;</button>
     </div>
+
 </section>
 	
 <style>
@@ -499,13 +492,11 @@ body {
         margin-left: 10px;   /* Adds more space between title and indicator on mobile */
     }
 }
-
-	.media-type {
+.media-type {
     color: red;
     font-weight: bold;
 }
 
-	
 </style>
 
 <script>
@@ -1373,14 +1364,21 @@ startDailyUpdate();
 }
 
 
-#pinoy-movies-carousel::-webkit-scrollbar {
-    display: none; 
+/* Style for the number badge */
+.number {
+    position: absolute;
+    top: 0; /* Align the top edge of the number with the top edge of the image */
+    left: 5px; /* 10px from the left edge */
+    font-size: 40vh; /* Size of the number */
+    opacity: 0.4; /* 30% opacity */
+    color: white; /* White color for the number */
+    -webkit-text-stroke: 2px black; /* Black stroke for the number */
+    text-stroke: 2px black; /* Black stroke for other browsers that support text-stroke */
+    font-weight: bold; /* Bold weight for the number */
+    z-index: 10; /* Ensure the number is above the image */
 }
 
-#pinoy-movies-carousel {
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
-}
+
 </style>
 <script>
 const pinoyMovieIds = [
@@ -1397,7 +1395,6 @@ async function fetchPinoyMovies() {
     displayPinoyMovies(pinoyMovies); 
 }
 
-
 async function fetchAllPinoyMovies() {
     const allMovies = await Promise.all(pinoyMovieIds.map(async (id) => {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
@@ -1411,14 +1408,28 @@ function displayPinoyMovies(movies) {
     const carouselInner = document.getElementById('pinoy-movies-carousel');
     carouselInner.innerHTML = ''; 
 
-    movies.forEach(movie => {
+    movies.forEach((movie, index) => {
         if (movie.poster_path) { 
             const carouselItem = document.createElement('div');
             carouselItem.classList.add('carousel-item');
 
+            // Create the number badge element
+            const numberElement = document.createElement('div');
+            numberElement.textContent = index + 1;
+            numberElement.classList.add('number'); // Apply the badge styles
+
+            // Create the movie poster image element
+            const movieImage = document.createElement('img');
+            movieImage.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+            movieImage.alt = movie.title;
+
+            // Append the number badge and the movie image to the carousel item
             carouselItem.innerHTML = `
                 <a href="player.html?type=movie&id=${movie.id}">
-                    <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
+                    <div style="position: relative;">
+                        ${numberElement.outerHTML}
+                        ${movieImage.outerHTML}
+                    </div>
                 </a>
             `;
             carouselInner.appendChild(carouselItem);
@@ -1447,7 +1458,9 @@ function startPinoyMoviesUpdate() {
 
 // Initialize the Pinoy movies section and start daily updates
 startPinoyMoviesUpdate();
+
 </script>
+
 <style>
 
 .popular-movies {
