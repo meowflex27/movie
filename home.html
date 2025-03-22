@@ -246,6 +246,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <button class="carousel-button right" id="next-top-rated-tv-show">&#10095;</button>
     </div>
+
 </section>
 	
 <style>
@@ -1363,14 +1364,21 @@ startDailyUpdate();
 }
 
 
-#pinoy-movies-carousel::-webkit-scrollbar {
-    display: none; 
+/* Style for the number badge */
+.number {
+    position: absolute;
+    top: 0; /* Align the top edge of the number with the top edge of the image */
+    left: 5px; /* 10px from the left edge */
+    font-size: 40vh; /* Size of the number */
+    opacity: 0.4; /* 30% opacity */
+    color: white; /* White color for the number */
+    -webkit-text-stroke: 2px black; /* Black stroke for the number */
+    text-stroke: 2px black; /* Black stroke for other browsers that support text-stroke */
+    font-weight: bold; /* Bold weight for the number */
+    z-index: 10; /* Ensure the number is above the image */
 }
 
-#pinoy-movies-carousel {
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
-}
+
 </style>
 <script>
 const pinoyMovieIds = [
@@ -1387,7 +1395,6 @@ async function fetchPinoyMovies() {
     displayPinoyMovies(pinoyMovies); 
 }
 
-
 async function fetchAllPinoyMovies() {
     const allMovies = await Promise.all(pinoyMovieIds.map(async (id) => {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
@@ -1401,14 +1408,28 @@ function displayPinoyMovies(movies) {
     const carouselInner = document.getElementById('pinoy-movies-carousel');
     carouselInner.innerHTML = ''; 
 
-    movies.forEach(movie => {
+    movies.forEach((movie, index) => {
         if (movie.poster_path) { 
             const carouselItem = document.createElement('div');
             carouselItem.classList.add('carousel-item');
 
+            // Create the number badge element
+            const numberElement = document.createElement('div');
+            numberElement.textContent = index + 1;
+            numberElement.classList.add('number'); // Apply the badge styles
+
+            // Create the movie poster image element
+            const movieImage = document.createElement('img');
+            movieImage.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+            movieImage.alt = movie.title;
+
+            // Append the number badge and the movie image to the carousel item
             carouselItem.innerHTML = `
                 <a href="player.html?type=movie&id=${movie.id}">
-                    <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
+                    <div style="position: relative;">
+                        ${numberElement.outerHTML}
+                        ${movieImage.outerHTML}
+                    </div>
                 </a>
             `;
             carouselInner.appendChild(carouselItem);
@@ -1437,7 +1458,9 @@ function startPinoyMoviesUpdate() {
 
 // Initialize the Pinoy movies section and start daily updates
 startPinoyMoviesUpdate();
+
 </script>
+
 <style>
 
 .popular-movies {
